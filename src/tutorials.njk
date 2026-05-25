@@ -1,0 +1,6 @@
+---
+layout: base.njk
+permalink: /tutorials/
+title: VPNHUB Tutorials
+---
+<main class="section"><div class="section-inner"><h1>VPNHUB Tutorials</h1><p class="lead">Browse all guides and blog posts.</p><div class="grid">{% for post in collections.posts | reverse %}<article class="post-card">{% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}<div class="meta">{{ post.data.date }} · {{ post.data.category }}</div><h3>{{ post.data.title }}</h3><p>{{ post.data.description }}</p><a class="read-more" href="{{ post.url }}">Read More →</a></article>{% endfor %}</div></div></main>

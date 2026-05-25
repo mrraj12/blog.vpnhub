@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: VPNHUB - Tutorials & VPN Guides
+description: VPN tutorials, privacy guides, server tips, and video lessons.
+---
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">VPN tutorials • Privacy • Server guides</span>
+    <h1>Learn VPN, Privacy & Online Security with <span class="highlight">VPNHUB</span></h1>
+    <p>Step-by-step tutorials with text, images, and video lessons. Add or edit posts anytime from the Netlify admin panel.</p>
+    <div class="actions">
+      <a class="btn" href="/tutorials/">View Tutorials</a>
+      <a class="btn secondary" href="/videos/">Watch Videos</a>
+    </div>
+    <div class="cms-note">Admin editing is ready: after Netlify setup, open <strong>/admin/</strong> to add or update blog posts.</div>
+  </div>
+</header>
+<section class="section">
+  <div class="section-inner">
+    <h2>Latest Tutorials</h2>
+    <p class="lead">Fresh guides and blog posts from VPNHUB.</p>
+    <div class="grid">
+      {% for post in collections.posts | reverse | slice(0, 6) %}
+      <article class="post-card">
+        {% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}
+        <div class="meta">{{ post.data.date }} · {{ post.data.category }}</div>
+        <h3>{{ post.data.title }}</h3>
+        <p>{{ post.data.description }}</p>
+        <a class="read-more" href="{{ post.url }}">Read More →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-inner grid">
+    <div class="card"><h3>Text Tutorials</h3><p>Write detailed setup guides, step-by-step instructions, troubleshooting tips, and privacy advice.</p></div>
+    <div class="card"><h3>Images</h3><p>Upload screenshots and tutorial images directly from the CMS editor.</p></div>
+    <div class="card"><h3>Videos</h3><p>Embed YouTube videos or add your own video tutorial links inside posts.</p></div>
+  </div>
+</section>

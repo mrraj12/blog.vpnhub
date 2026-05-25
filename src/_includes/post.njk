@@ -1,0 +1,11 @@
+---
+layout: base.njk
+---
+<main class="article-wrap">
+  <article class="article">
+    {% if image %}<img src="{{ image }}" alt="{{ title }}">{% endif %}
+    <h1>{{ title }}</h1>
+    <div class="meta">{{ date | readableDate }} · {{ category }}</div>
+    {{ content | safe }}
+  </article>
+</main>
