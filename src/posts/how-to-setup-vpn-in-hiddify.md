@@ -8,7 +8,7 @@ date: 2026-05-26
 category: VPN Setup
 author: "VPNHUB Team "
 readTime: 5 min read
-image: /images/uploads/hiddify-vpn-setup.jpg
+image: /uploads/vpnhub.png
 featured: true
 difficulty: Beginner
 platform: All Devices
