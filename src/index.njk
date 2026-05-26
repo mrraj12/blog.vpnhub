@@ -77,10 +77,10 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
 
       <h2>Pinned Tutorials</h2>
 
-      {% if collections.pinnedTutorials.length %}
+      {% if collections.homepageTutorials.length %}
       <div class="post-grid">
 
-        {% for post in collections.pinnedTutorials %}
+        {% for post in collections.homepageTutorials %}
         <article class="post-card">
 
           {% if post.data.image %}
@@ -100,7 +100,9 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
               <a href="{{ post.url }}">{{ post.data.title }}</a>
             </h3>
 
+            {% if post.data.description %}
             <p>{{ post.data.description }}</p>
+            {% endif %}
 
             <a href="{{ post.url }}" class="read-more">Read More →</a>
 
@@ -113,8 +115,8 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
       {% else %}
 
       <div class="empty-state">
-        <h3>No pinned tutorials yet</h3>
-        <p>Add <code>featured: true</code> to 3 posts to show them here.</p>
+        <h3>No tutorials found</h3>
+        <p>Add posts with <code>tags: posts</code> in the frontmatter.</p>
       </div>
 
       {% endif %}
