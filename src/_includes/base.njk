@@ -12,6 +12,70 @@
   {% endif %}
 
   <style>
+    :root{
+      --site-bg:#111827;
+      --site-bg-2:#4c1d95;
+      --site-bg-3:#1e3a8a;
+
+      --text-main:#ffffff;
+      --text-muted:#d1d5db;
+
+      --header-glass:linear-gradient(
+        135deg,
+        rgba(17,24,39,.72),
+        rgba(76,29,149,.45),
+        rgba(30,58,138,.42)
+      );
+
+      --nav-glass:linear-gradient(
+        135deg,
+        rgba(255,255,255,.14),
+        rgba(168,85,247,.10),
+        rgba(37,99,235,.10)
+      );
+
+      --card-bg:rgba(31,41,55,.82);
+      --card-border:rgba(216,180,254,.18);
+
+      --purple:#a855f7;
+      --purple-soft:#d8b4fe;
+      --blue:#2563eb;
+
+      --shadow:0 18px 44px rgba(0,0,0,.34);
+    }
+
+    body.light-mode{
+      --site-bg:#f8fafc;
+      --site-bg-2:#f3e8ff;
+      --site-bg-3:#dbeafe;
+
+      --text-main:#111827;
+      --text-muted:#4b5563;
+
+      --header-glass:linear-gradient(
+        135deg,
+        rgba(255,255,255,.74),
+        rgba(243,232,255,.54),
+        rgba(219,234,254,.48)
+      );
+
+      --nav-glass:linear-gradient(
+        135deg,
+        rgba(255,255,255,.78),
+        rgba(168,85,247,.12),
+        rgba(37,99,235,.10)
+      );
+
+      --card-bg:rgba(255,255,255,.82);
+      --card-border:rgba(124,58,237,.18);
+
+      --purple:#7c3aed;
+      --purple-soft:#7c3aed;
+      --blue:#2563eb;
+
+      --shadow:0 18px 44px rgba(15,23,42,.14);
+    }
+
     *{
       box-sizing:border-box;
     }
@@ -23,8 +87,12 @@
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:#111827;
-      color:#ffffff;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
+        radial-gradient(circle at 88% 70%, rgba(37,99,235,.24), transparent 34%),
+        linear-gradient(135deg,var(--site-bg) 0%,var(--site-bg-2) 46%,var(--site-bg-3) 100%);
+      color:var(--text-main);
+      transition:background .3s ease,color .3s ease;
     }
 
     a{
@@ -32,7 +100,7 @@
     }
 
     /* =========================
-       DESKTOP HEADER - GLASS STYLE
+       DESKTOP HEADER - GLASS
     ========================= */
 
     .site-header{
@@ -40,20 +108,20 @@
       top:0;
       z-index:1000;
       padding:0;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(17,24,39,.72),
-          rgba(76,29,149,.45),
-          rgba(30,58,138,.42)
-        );
-      border-bottom:1px solid rgba(216,180,254,.16);
+      background:var(--header-glass);
+      border-bottom:1px solid var(--card-border);
       backdrop-filter:blur(22px) saturate(180%);
       -webkit-backdrop-filter:blur(22px) saturate(180%);
       box-shadow:
         0 14px 40px rgba(0,0,0,.22),
         inset 0 1px 0 rgba(255,255,255,.08);
-      transition:transform .28s ease, background .28s ease;
+      transition:transform .28s ease, background .28s ease, border-color .28s ease;
+    }
+
+    body.light-mode .site-header{
+      box-shadow:
+        0 14px 40px rgba(15,23,42,.10),
+        inset 0 1px 0 rgba(255,255,255,.55);
     }
 
     .nav-inner{
@@ -64,6 +132,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      position:relative;
     }
 
     .brand{
@@ -71,18 +140,71 @@
       align-items:center;
       gap:10px;
       text-decoration:none;
-      color:#ffffff;
+      color:var(--text-main);
       font-size:1.45rem;
       font-weight:950;
       letter-spacing:-.035em;
       text-shadow:0 1px 16px rgba(255,255,255,.12);
+      position:relative;
     }
 
     .brand-icon{
-      color:#c084fc;
+      color:var(--purple-soft);
       font-size:1.35rem;
       line-height:1;
       filter:drop-shadow(0 0 10px rgba(192,132,252,.45));
+    }
+
+    .brand-text-wrap{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+      position:relative;
+    }
+
+    .brand-name{
+      line-height:1;
+    }
+
+    .brand-status{
+      position:absolute;
+      top:28px;
+      left:0;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      width:max-content;
+      max-width:190px;
+      padding:5px 9px;
+      border-radius:999px;
+      color:#ffffff;
+      background:linear-gradient(135deg,rgba(124,58,237,.92),rgba(37,99,235,.9));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.18);
+      font-size:.68rem;
+      font-weight:850;
+      letter-spacing:0;
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .45s ease, transform .45s ease, visibility .45s ease;
+      pointer-events:none;
+      white-space:nowrap;
+    }
+
+    .brand-status.is-hidden{
+      opacity:0;
+      transform:translateY(-6px);
+      visibility:hidden;
+    }
+
+    .status-dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:#22c55e;
+      box-shadow:0 0 12px rgba(34,197,94,.9);
     }
 
     .desktop-nav{
@@ -96,9 +218,14 @@
       box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
     }
 
+    body.light-mode .desktop-nav{
+      background:rgba(255,255,255,.52);
+      border-color:rgba(124,58,237,.12);
+    }
+
     .desktop-nav a{
       text-decoration:none;
-      color:#ffffff;
+      color:var(--text-main);
       font-size:.93rem;
       font-weight:800;
       opacity:.92;
@@ -109,11 +236,42 @@
 
     .desktop-nav a:hover{
       color:#ffffff;
-      background:rgba(168,85,247,.26);
+      background:rgba(168,85,247,.32);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.14),
         0 8px 20px rgba(124,58,237,.22);
       opacity:1;
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .theme-toggle{
+      width:42px;
+      height:42px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      color:var(--text-main);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:1.1rem;
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 8px 20px rgba(0,0,0,.12);
+      transition:.2s ease;
+    }
+
+    .theme-toggle:hover{
+      background:rgba(168,85,247,.24);
+      transform:translateY(-1px);
     }
 
     .mobile-menu-btn{
@@ -125,7 +283,7 @@
     }
 
     /* =========================
-       MOBILE HEADER - iOS GLASS EFFECT
+       MOBILE HEADER - GLASS
     ========================= */
 
     @media(max-width:768px){
@@ -133,19 +291,27 @@
         position:sticky;
         top:0;
         z-index:1000;
-        padding:10px 12px 7px;
+        padding:9px 10px 6px;
         border-bottom:0;
-        background:
-          linear-gradient(
-            180deg,
-            rgba(10,10,22,.72) 0%,
-            rgba(76,29,149,.34) 55%,
-            rgba(30,58,138,.18) 100%
-          );
+        background:linear-gradient(
+          180deg,
+          rgba(10,10,22,.68) 0%,
+          rgba(76,29,149,.28) 58%,
+          rgba(30,58,138,.14) 100%
+        );
         backdrop-filter:blur(26px) saturate(190%);
         -webkit-backdrop-filter:blur(26px) saturate(190%);
         box-shadow:none;
         will-change:transform;
+      }
+
+      body.light-mode .site-header{
+        background:linear-gradient(
+          180deg,
+          rgba(255,255,255,.62) 0%,
+          rgba(243,232,255,.40) 58%,
+          rgba(219,234,254,.22) 100%
+        );
       }
 
       .site-header.mobile-hidden{
@@ -153,30 +319,31 @@
       }
 
       .nav-inner{
-        min-height:58px;
-        padding:0 16px;
-        border-radius:30px;
-        border:1px solid rgba(216,180,254,.20);
-        background:
-          linear-gradient(
-            135deg,
-            rgba(255,255,255,.14),
-            rgba(168,85,247,.10) 35%,
-            rgba(37,99,235,.10) 100%
-          );
+        min-height:54px;
+        padding:0 14px;
+        border-radius:28px;
+        border:1px solid var(--card-border);
+        background:var(--nav-glass);
         backdrop-filter:blur(28px) saturate(220%);
         -webkit-backdrop-filter:blur(28px) saturate(220%);
         box-shadow:
-          0 18px 44px rgba(0,0,0,.34),
+          0 14px 36px rgba(0,0,0,.28),
           inset 0 1px 0 rgba(255,255,255,.22),
           inset 0 -1px 0 rgba(255,255,255,.06);
+      }
+
+      body.light-mode .nav-inner{
+        box-shadow:
+          0 14px 36px rgba(15,23,42,.12),
+          inset 0 1px 0 rgba(255,255,255,.7),
+          inset 0 -1px 0 rgba(255,255,255,.28);
       }
 
       .nav-inner::before{
         content:"";
         position:absolute;
-        inset:11px 13px 8px;
-        border-radius:30px;
+        inset:9px 11px 7px;
+        border-radius:27px;
         pointer-events:none;
         background:
           radial-gradient(circle at 18% 0%, rgba(255,255,255,.22), transparent 34%),
@@ -187,32 +354,54 @@
       .brand{
         position:relative;
         z-index:1;
-        font-size:1.14rem;
-        gap:8px;
+        font-size:1.06rem;
+        gap:7px;
       }
 
       .brand-icon{
-        font-size:1rem;
-        color:#d8b4fe;
+        font-size:.95rem;
+        color:var(--purple-soft);
+      }
+
+      .brand-status{
+        top:22px;
+        padding:4px 8px;
+        font-size:.58rem;
+        max-width:150px;
+      }
+
+      .status-dot{
+        width:6px;
+        height:6px;
       }
 
       .desktop-nav{
         display:none;
       }
 
-      .mobile-menu-btn{
+      .nav-actions{
         position:relative;
         z-index:1;
+        gap:7px;
+      }
+
+      .theme-toggle{
+        width:36px;
+        height:36px;
+        font-size:.95rem;
+      }
+
+      .mobile-menu-btn{
         display:flex;
         align-items:center;
         justify-content:center;
-        width:38px;
-        height:38px;
+        width:36px;
+        height:36px;
         border:1px solid rgba(255,255,255,.12);
         border-radius:50%;
         background:rgba(255,255,255,.08);
-        color:#ffffff;
-        font-size:1.48rem;
+        color:var(--text-main);
+        font-size:1.42rem;
         line-height:1;
         cursor:pointer;
         backdrop-filter:blur(18px) saturate(180%);
@@ -229,19 +418,18 @@
 
       .mobile-menu{
         position:absolute;
-        top:80px;
-        right:14px;
+        top:74px;
+        right:12px;
         width:min(66vw,300px);
-        padding:28px 34px;
-        border-radius:24px;
-        border:1px solid rgba(216,180,254,.20);
-        background:
-          linear-gradient(
-            135deg,
-            rgba(31,41,55,.72),
-            rgba(76,29,149,.38),
-            rgba(30,58,138,.28)
-          );
+        padding:25px 30px;
+        border-radius:22px;
+        border:1px solid var(--card-border);
+        background:linear-gradient(
+          135deg,
+          rgba(31,41,55,.74),
+          rgba(76,29,149,.40),
+          rgba(30,58,138,.30)
+        );
         backdrop-filter:blur(30px) saturate(210%);
         -webkit-backdrop-filter:blur(30px) saturate(210%);
         box-shadow:
@@ -250,16 +438,28 @@
           inset 0 -1px 0 rgba(255,255,255,.06);
       }
 
+      body.light-mode .mobile-menu{
+        background:linear-gradient(
+          135deg,
+          rgba(255,255,255,.78),
+          rgba(243,232,255,.62),
+          rgba(219,234,254,.58)
+        );
+        box-shadow:
+          0 26px 70px rgba(15,23,42,.18),
+          inset 0 1px 0 rgba(255,255,255,.75);
+      }
+
       .mobile-menu.active{
         display:block;
       }
 
       .mobile-menu a{
         display:block;
-        padding:0 0 28px;
-        color:#ffffff;
+        padding:0 0 25px;
+        color:var(--text-main);
         text-decoration:none;
-        font-size:1.12rem;
+        font-size:1.08rem;
         font-weight:850;
         line-height:1.2;
         text-shadow:0 1px 14px rgba(0,0,0,.18);
@@ -272,45 +472,54 @@
 
     @media(max-width:420px){
       .site-header{
-        padding:9px 10px 6px;
+        padding:8px 9px 5px;
       }
 
       .nav-inner{
-        min-height:54px;
-        padding:0 15px;
-        border-radius:28px;
+        min-height:52px;
+        padding:0 13px;
+        border-radius:26px;
       }
 
       .nav-inner::before{
-        inset:10px 12px 7px;
-        border-radius:28px;
+        inset:8px 10px 6px;
+        border-radius:25px;
       }
 
       .brand{
-        font-size:1.06rem;
+        font-size:1rem;
       }
 
       .brand-icon{
-        font-size:.95rem;
+        font-size:.9rem;
+      }
+
+      .brand-status{
+        top:21px;
+        font-size:.54rem;
+        padding:4px 7px;
+      }
+
+      .theme-toggle,
+      .mobile-menu-btn{
+        width:34px;
+        height:34px;
       }
 
       .mobile-menu-btn{
-        width:36px;
-        height:36px;
-        font-size:1.42rem;
+        font-size:1.35rem;
       }
 
       .mobile-menu{
-        top:74px;
-        right:12px;
+        top:70px;
+        right:10px;
         width:68vw;
-        padding:25px 30px;
-        border-radius:22px;
+        padding:24px 28px;
       }
 
       .mobile-menu a{
-        font-size:1.08rem;
-        padding-bottom:25px;
+        font-size:1.04rem;
+        padding-bottom:24px;
       }
     }
   </style>
@@ -323,7 +532,15 @@
 
       <a href="/" class="brand" aria-label="VPNHUB Home">
         <span class="brand-icon">◇</span>
-        <span>VPNHUB</span>
+
+        <span class="brand-text-wrap">
+          <span class="brand-name">VPNHUB</span>
+
+          <span class="brand-status" id="brandStatus">
+            <span class="status-dot"></span>
+            Secure learning hub
+          </span>
+        </span>
       </a>
 
       <nav class="desktop-nav" aria-label="Desktop navigation">
@@ -332,16 +549,28 @@
         <a href="/about/">About</a>
       </nav>
 
-      <button
-        class="mobile-menu-btn"
-        id="mobileMenuBtn"
-        type="button"
-        onclick="toggleMobileMenu()"
-        aria-label="Open mobile menu"
-        aria-expanded="false"
-      >
-        <span id="mobileMenuIcon">☰</span>
-      </button>
+      <div class="nav-actions">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          onclick="toggleTheme()"
+          aria-label="Toggle light and dark mode"
+        >
+          <span id="themeIcon">🌙</span>
+        </button>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          type="button"
+          onclick="toggleMobileMenu()"
+          aria-label="Open mobile menu"
+          aria-expanded="false"
+        >
+          <span id="mobileMenuIcon">☰</span>
+        </button>
+      </div>
 
     </div>
 
@@ -355,6 +584,26 @@
   {{ content | safe }}
 
   <script>
+    function applyTheme(theme){
+      const icon = document.getElementById("themeIcon");
+
+      if(theme === "light"){
+        document.body.classList.add("light-mode");
+        if(icon) icon.textContent = "☀️";
+      }else{
+        document.body.classList.remove("light-mode");
+        if(icon) icon.textContent = "🌙";
+      }
+    }
+
+    function toggleTheme(){
+      const currentTheme = localStorage.getItem("vpnhub-theme") || "dark";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+      localStorage.setItem("vpnhub-theme", nextTheme);
+      applyTheme(nextTheme);
+    }
+
     function toggleMobileMenu(){
       const menu = document.getElementById("mobileMenu");
       const icon = document.getElementById("mobileMenuIcon");
@@ -386,6 +635,24 @@
       btn.setAttribute("aria-expanded", "false");
       icon.textContent = "☰";
     }
+
+    function showBrandStatusForFiveSeconds(){
+      const status = document.getElementById("brandStatus");
+
+      if(!status) return;
+
+      status.classList.remove("is-hidden");
+
+      setTimeout(function(){
+        status.classList.add("is-hidden");
+      }, 5000);
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      const savedTheme = localStorage.getItem("vpnhub-theme") || "dark";
+      applyTheme(savedTheme);
+      showBrandStatusForFiveSeconds();
+    });
 
     document.addEventListener("click", function(event){
       const menu = document.getElementById("mobileMenu");
