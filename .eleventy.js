@@ -6,7 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("readableDate", function(dateObj) {
     if (!dateObj) return "";
 
-    const date = new Date(dateObj);
+    const date = new Date(dateObj); 
 
     if (Number.isNaN(date.getTime())) return "";
 
