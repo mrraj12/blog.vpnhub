@@ -1,11 +1,399 @@
 ---
 layout: base.njk
 ---
-<main class="article-wrap">
-  <article class="article">
-    {% if image %}<img src="{{ image }}" alt="{{ title }}">{% endif %}
-    <h1>{{ title }}</h1>
-    <div class="meta">{{ date | readableDate }} · {{ category }}</div>
-    {{ content | safe }}
-  </article>
+
+<main class="article-page">
+
+  <section class="article-hero">
+    <div class="article-hero-bg"></div>
+
+    <div class="article-hero-inner">
+
+      <div class="article-icon-card">
+        <div class="article-icon-inner">
+          {{ icon or "VPN" }}
+        </div>
+      </div>
+
+      <div class="article-header glass-card">
+
+        {% if category %}
+        <span class="article-category">
+          {{ category }}
+        </span>
+        {% endif %}
+
+        <h1>{{ title }}</h1>
+
+        <div class="article-meta">
+          {% if date %}
+          <span>{{ date | readableDate }}</span>
+          {% endif %}
+
+          {% if category %}
+          <span>{{ category }}</span>
+          {% endif %}
+        </div>
+
+        {% if description %}
+        <p class="article-description">
+          {{ description }}
+        </p>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="article-content-section">
+    <article class="article-content glass-card">
+      {{ content | safe }}
+    </article>
+  </section>
+
 </main>
+
+<style>
+.article-page{
+  min-height:100vh;
+  overflow:hidden;
+  color:#ffffff;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(168,85,247,.30), transparent 26%),
+    radial-gradient(circle at 10% 35%, rgba(37,99,235,.16), transparent 30%),
+    linear-gradient(135deg,#0f172a 0%,#111827 38%,#1e1b4b 100%);
+}
+
+/* Hero */
+.article-hero{
+  position:relative;
+  padding:80px 20px 42px;
+}
+
+.article-hero-bg{
+  position:absolute;
+  top:0;
+  right:0;
+  width:360px;
+  height:260px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  border-bottom-left-radius:180px;
+  opacity:.72;
+  filter:blur(.2px);
+}
+
+.article-hero-inner{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:1050px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:36px;
+  align-items:center;
+}
+
+/* VPN Icon */
+.article-icon-card{
+  width:230px;
+  height:320px;
+  margin:0 auto;
+  padding:12px;
+  border-radius:34px;
+  border:7px solid #c084fc;
+  background:rgba(15,23,42,.55);
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.14);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.article-icon-inner{
+  width:150px;
+  height:190px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#8b5cf6,#2563eb);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  font-size:2.1rem;
+  font-weight:950;
+  box-shadow:0 18px 40px rgba(37,99,235,.32);
+}
+
+/* Glass */
+.glass-card{
+  border:1px solid rgba(216,180,254,.18);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.11),
+      rgba(168,85,247,.08) 42%,
+      rgba(37,99,235,.08)
+    );
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(28px) saturate(200%);
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+}
+
+.article-header{
+  padding:36px;
+  border-radius:28px;
+}
+
+.article-category{
+  display:inline-flex;
+  padding:8px 15px;
+  margin-bottom:18px;
+  border-radius:999px;
+  background:rgba(168,85,247,.22);
+  color:#d8b4fe;
+  font-size:.82rem;
+  font-weight:900;
+}
+
+.article-header h1{
+  margin:0 0 16px;
+  color:#ffffff;
+  font-size:3rem;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  font-weight:950;
+}
+
+.article-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+  color:#cbd5e1;
+  font-size:.95rem;
+}
+
+.article-meta span:not(:last-child)::after{
+  content:"•";
+  margin-left:10px;
+  color:#a855f7;
+}
+
+.article-description{
+  max-width:720px;
+  margin:0;
+  color:#e5e7eb;
+  font-size:1.08rem;
+  line-height:1.7;
+}
+
+/* Content */
+.article-content-section{
+  padding:24px 20px 100px;
+}
+
+.article-content{
+  max-width:900px;
+  margin:0 auto;
+  padding:42px;
+  border-radius:28px;
+  color:#e5e7eb;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4{
+  color:#ffffff;
+  line-height:1.25;
+  letter-spacing:-.025em;
+}
+
+.article-content h2{
+  margin:36px 0 16px;
+  font-size:2rem;
+}
+
+.article-content h3{
+  margin:30px 0 14px;
+  font-size:1.45rem;
+}
+
+.article-content p{
+  margin:0 0 18px;
+  color:#d1d5db;
+  font-size:1.05rem;
+  line-height:1.85;
+}
+
+.article-content ul,
+.article-content ol{
+  margin:0 0 24px;
+  padding-left:24px;
+  color:#d1d5db;
+}
+
+.article-content li{
+  margin-bottom:10px;
+  line-height:1.75;
+}
+
+.article-content a{
+  color:#c084fc;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.article-content a:hover{
+  text-decoration:underline;
+}
+
+.article-content img{
+  width:100%;
+  height:auto;
+  border-radius:20px;
+  margin:24px 0;
+  box-shadow:0 20px 50px rgba(0,0,0,.32);
+}
+
+.article-content iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  height:auto;
+  border:0;
+  border-radius:20px;
+  margin:24px 0;
+  box-shadow:0 20px 50px rgba(0,0,0,.32);
+}
+
+.article-content code{
+  padding:3px 7px;
+  border-radius:7px;
+  background:rgba(15,23,42,.85);
+  color:#d8b4fe;
+}
+
+.article-content pre{
+  overflow:auto;
+  padding:20px;
+  border-radius:18px;
+  background:rgba(15,23,42,.88);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.article-content pre code{
+  padding:0;
+  background:transparent;
+}
+
+/* Tablet */
+@media(max-width:900px){
+  .article-hero-inner{
+    grid-template-columns:1fr;
+    gap:28px;
+    text-align:center;
+  }
+
+  .article-header{
+    text-align:left;
+  }
+
+  .article-icon-card{
+    width:190px;
+    height:260px;
+  }
+
+  .article-icon-inner{
+    width:125px;
+    height:155px;
+    font-size:1.8rem;
+  }
+
+  .article-header h1{
+    font-size:2.45rem;
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .article-page{
+    overflow-x:hidden;
+  }
+
+  .article-hero{
+    padding:54px 16px 28px;
+  }
+
+  .article-hero-bg{
+    width:210px;
+    height:165px;
+    border-bottom-left-radius:120px;
+    opacity:.52;
+  }
+
+  .article-icon-card{
+    width:150px;
+    height:210px;
+    border-width:5px;
+    border-radius:26px;
+  }
+
+  .article-icon-inner{
+    width:100px;
+    height:125px;
+    border-radius:13px;
+    font-size:1.45rem;
+  }
+
+  .article-header{
+    padding:24px;
+    border-radius:22px;
+  }
+
+  .article-header h1{
+    font-size:2rem;
+  }
+
+  .article-description{
+    font-size:1rem;
+  }
+
+  .article-content-section{
+    padding:20px 16px 70px;
+  }
+
+  .article-content{
+    padding:24px;
+    border-radius:22px;
+  }
+
+  .article-content h2{
+    font-size:1.55rem;
+  }
+
+  .article-content h3{
+    font-size:1.25rem;
+  }
+
+  .article-content p,
+  .article-content li{
+    font-size:.98rem;
+  }
+}
+
+@media(max-width:420px){
+  .article-header h1{
+    font-size:1.75rem;
+  }
+
+  .article-content{
+    padding:22px 18px;
+  }
+}
+</style>
