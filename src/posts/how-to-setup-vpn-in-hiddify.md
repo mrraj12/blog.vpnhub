@@ -1,13 +1,14 @@
 ---
 layout: post.njk
+tags: posts
 title: How to Set Up VPN in Hiddify
-description: Learn how to set up a VPN profile in Hiddify using a subscription link, QR code, or manual import method.
+description: Learn how to set up a VPN profile in Hiddify using a subscription
+  link, QR code, or manual import method.
 date: 2026-05-26
 category: VPN Setup
-author: VPNHUB Team
+author: "VPNHUB Team "
 readTime: 5 min read
 image: /images/uploads/hiddify-vpn-setup.jpg
-tags: posts
 featured: true
 difficulty: Beginner
 platform: All Devices
