@@ -12,19 +12,30 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   <section class="hero">
     <div class="hero-inner">
 
+      <span class="hero-badge">
+        VPN Security • Privacy Protection • Online Freedom
+      </span>
+
       <h1>
         Your Privacy,
         <span>Protected</span>
       </h1>
 
       <p>
-        Discover the latest insights on digital privacy, security, and how VPNs
-        are reshaping the way we browse the internet safely.
+        Discover the latest insights on digital privacy, VPN security, online freedom,
+        streaming access, and server management with step-by-step tutorials from
+        VPNHUB.
       </p>
 
-      <a class="primary-btn" href="/tutorials/">
-        Start Your Secure Journey
-      </a>
+      <div class="hero-actions">
+        <a class="primary-btn" href="/tutorials/">
+          View Tutorials
+        </a>
+
+        <a class="secondary-btn" href="/videos/">
+          Watch Videos
+        </a>
+      </div>
 
     </div>
   </section>
@@ -122,7 +133,7 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
 </main>
 
 <style>
-/* Hide footer from base.njk on this homepage */
+/* Hide footer from base.njk on homepage */
 footer,
 .site-footer{
   display:none !important;
@@ -138,20 +149,34 @@ footer,
 
 /* Hero */
 .hero{
-  padding:105px 20px 75px;
+  padding:120px 20px 95px;
   text-align:center;
 }
 
 .hero-inner{
-  max-width:760px;
+  max-width:1120px;
   margin:0 auto;
 }
 
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 28px;
+  margin-bottom:44px;
+  border-radius:999px;
+  border:1px solid rgba(216,180,254,.26);
+  background:rgba(168,85,247,.16);
+  color:#d8b4fe;
+  font-size:1rem;
+  line-height:1;
+}
+
 .hero h1{
-  margin:0 0 18px;
+  margin:0 0 28px;
   color:#ffffff;
-  font-size:3.7rem;
-  line-height:1.08;
+  font-size:4.35rem;
+  line-height:1.04;
   font-weight:950;
   letter-spacing:-.045em;
 }
@@ -161,26 +186,46 @@ footer,
 }
 
 .hero p{
-  margin:0 auto 32px;
-  color:#d1d5db;
-  font-size:1.18rem;
-  line-height:1.55;
+  max-width:960px;
+  margin:0 auto 48px;
+  color:#f3f4f6;
+  font-size:1.45rem;
+  line-height:1.9;
 }
 
-.primary-btn{
+.hero-actions{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  border:0;
-  border-radius:9px;
-  padding:16px 34px;
+  min-width:228px;
+  min-height:68px;
+  padding:0 34px;
+  border-radius:16px;
   color:#ffffff;
-  background:linear-gradient(90deg,#7c3aed,#2563eb);
-  font-size:.95rem;
+  font-size:1.15rem;
   font-weight:900;
   text-decoration:none;
-  cursor:pointer;
-  box-shadow:0 14px 35px rgba(124,58,237,.28);
+  box-sizing:border-box;
+}
+
+.primary-btn{
+  background:linear-gradient(90deg,#7c3aed,#2563eb);
+  box-shadow:0 18px 45px rgba(124,58,237,.32);
+}
+
+.secondary-btn{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.24);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 /* Sections */
@@ -353,6 +398,15 @@ footer,
 
 /* Tablet */
 @media(max-width:1000px){
+  .hero h1{
+    font-size:3.45rem;
+  }
+
+  .hero p{
+    font-size:1.2rem;
+    line-height:1.75;
+  }
+
   .feature-grid{
     grid-template-columns:repeat(2,1fr);
   }
@@ -365,15 +419,38 @@ footer,
 /* Mobile */
 @media(max-width:768px){
   .hero{
-    padding:82px 18px 54px;
+    padding:86px 18px 64px;
+  }
+
+  .hero-badge{
+    margin-bottom:34px;
+    padding:10px 18px;
+    font-size:.82rem;
   }
 
   .hero h1{
-    font-size:2.6rem;
+    font-size:2.35rem;
+    line-height:1.12;
+    margin-bottom:22px;
   }
 
   .hero p{
-    font-size:1.02rem;
+    font-size:1.06rem;
+    line-height:1.75;
+    margin-bottom:34px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .primary-btn,
+  .secondary-btn{
+    width:100%;
+    max-width:360px;
+    min-height:56px;
+    font-size:1rem;
   }
 
   .section{
@@ -401,12 +478,7 @@ footer,
 
 @media(max-width:420px){
   .hero h1{
-    font-size:2.25rem;
-  }
-
-  .primary-btn{
-    width:100%;
-    box-sizing:border-box;
+    font-size:2.05rem;
   }
 
   .post-body{
