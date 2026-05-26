@@ -11,11 +11,17 @@
     :root{
       --bg:#111827;
       --purple:#a855f7;
+      --purple-dark:#7c3aed;
       --blue:#2563eb;
       --text:#ffffff;
       --muted:#d1d5db;
       --glass:rgba(255,255,255,.10);
       --border:rgba(216,180,254,.18);
+      --shadow:0 28px 90px rgba(0,0,0,.34);
+    }
+
+    *{
+      box-sizing:border-box;
     }
 
     html,
@@ -27,60 +33,167 @@
         radial-gradient(circle at 86% 68%, rgba(37,99,235,.28), transparent 34%),
         linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
       font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x:hidden;
     }
 
     body::before{
-      content:"VPNHUB Admin";
+      content:"";
       position:fixed;
-      top:22px;
-      left:50%;
-      transform:translateX(-50%);
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, black, transparent 88%);
+      z-index:0;
+    }
+
+    .admin-shell{
+      position:relative;
       z-index:1;
-      padding:12px 24px;
-      border-radius:999px;
-      color:var(--text);
-      font-size:15px;
-      font-weight:900;
-      letter-spacing:.02em;
+      min-height:100vh;
+      padding:22px;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:22px;
+    }
+
+    .admin-topbar{
+      width:min(1180px,100%);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:16px 18px;
+      border-radius:26px;
       border:1px solid var(--border);
       background:
         linear-gradient(
           135deg,
           rgba(255,255,255,.14),
-          rgba(168,85,247,.12),
-          rgba(37,99,235,.12)
+          rgba(168,85,247,.10),
+          rgba(37,99,235,.10)
         );
-      backdrop-filter:blur(24px) saturate(190%);
-      -webkit-backdrop-filter:blur(24px) saturate(190%);
+      backdrop-filter:blur(28px) saturate(190%);
+      -webkit-backdrop-filter:blur(28px) saturate(190%);
       box-shadow:
-        0 18px 48px rgba(0,0,0,.26),
+        0 18px 50px rgba(0,0,0,.28),
         inset 0 1px 0 rgba(255,255,255,.18);
-      pointer-events:none;
     }
 
-    body::after{
-      content:"Manage VPN tutorials, videos, guides, images, SEO, and post metadata";
-      position:fixed;
-      top:76px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:1;
+    .admin-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .admin-logo{
+      width:46px;
+      height:46px;
+      flex:0 0 auto;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:950;
+      background:linear-gradient(135deg,var(--purple-dark),var(--blue));
+      box-shadow:
+        0 14px 34px rgba(124,58,237,.32),
+        inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .admin-title-wrap{
+      min-width:0;
+    }
+
+    .admin-title{
+      margin:0;
+      color:var(--text);
+      font-size:1.15rem;
+      line-height:1.1;
+      font-weight:950;
+      letter-spacing:-.025em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .admin-subtitle{
+      margin:6px 0 0;
       color:rgba(255,255,255,.72);
-      font-size:13px;
-      text-align:center;
-      pointer-events:none;
-      width:min(90vw,680px);
+      font-size:.86rem;
+      line-height:1.35;
     }
 
-    /* Decap CMS root */
+    .admin-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .admin-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 15px;
+      border-radius:999px;
+      color:white;
+      text-decoration:none;
+      font-size:.86rem;
+      font-weight:850;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      transition:.2s ease;
+    }
+
+    .admin-link:hover{
+      background:rgba(168,85,247,.22);
+      border-color:rgba(216,180,254,.24);
+    }
+
+    .admin-cms-card{
+      width:min(1180px,100%);
+      margin:0 auto;
+      min-height:calc(100vh - 122px);
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(17,24,39,.72),
+          rgba(76,29,149,.22),
+          rgba(30,58,138,.18)
+        );
+      backdrop-filter:blur(28px) saturate(190%);
+      -webkit-backdrop-filter:blur(28px) saturate(190%);
+      box-shadow:
+        var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    }
+
     #nc-root{
-      position:relative;
-      z-index:2;
-      min-height:100vh;
-      padding-top:112px;
+      min-height:calc(100vh - 122px);
+      background:transparent;
     }
 
-    /* Login box glass look */
+    /* Decap CMS polish */
+    [class*="AppHeader"],
+    [class*="Sidebar"],
+    [class*="Toolbar"],
+    [class*="CollectionTop"]{
+      backdrop-filter:blur(18px) saturate(180%) !important;
+      -webkit-backdrop-filter:blur(18px) saturate(180%) !important;
+    }
+
     [class*="LoginPage"],
     [class*="AuthenticationPage"]{
       background:transparent !important;
@@ -88,14 +201,15 @@
 
     [class*="LoginPage"] section,
     [class*="AuthenticationPage"] section{
+      width:min(460px, calc(100vw - 32px)) !important;
       border-radius:26px !important;
       border:1px solid var(--border) !important;
       background:
         linear-gradient(
           135deg,
-          rgba(31,41,55,.86),
-          rgba(76,29,149,.34),
-          rgba(30,58,138,.24)
+          rgba(31,41,55,.88),
+          rgba(76,29,149,.36),
+          rgba(30,58,138,.26)
         ) !important;
       backdrop-filter:blur(28px) saturate(190%) !important;
       -webkit-backdrop-filter:blur(28px) saturate(190%) !important;
@@ -104,7 +218,6 @@
         inset 0 1px 0 rgba(255,255,255,.14) !important;
     }
 
-    /* General Decap CMS polish */
     a,
     button{
       transition:.2s ease !important;
@@ -118,29 +231,171 @@
     textarea,
     select{
       border-radius:12px !important;
+      max-width:100%;
     }
 
-    @media(max-width:768px){
-      body::before{
-        top:14px;
-        font-size:13px;
-        padding:10px 18px;
+    img,
+    iframe{
+      max-width:100%;
+    }
+
+    /* Tablet */
+    @media(max-width:900px){
+      .admin-shell{
+        padding:16px;
+        gap:16px;
       }
 
-      body::after{
-        top:62px;
-        font-size:12px;
-        line-height:1.5;
+      .admin-topbar{
+        border-radius:24px;
+      }
+
+      .admin-cms-card{
+        border-radius:26px;
+        min-height:calc(100vh - 112px);
       }
 
       #nc-root{
-        padding-top:98px;
+        min-height:calc(100vh - 112px);
+      }
+    }
+
+    /* Mobile */
+    @media(max-width:768px){
+      .admin-shell{
+        padding:12px;
+        gap:12px;
+      }
+
+      .admin-topbar{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:14px;
+        border-radius:22px;
+      }
+
+      .admin-brand{
+        width:100%;
+      }
+
+      .admin-logo{
+        width:40px;
+        height:40px;
+        border-radius:14px;
+      }
+
+      .admin-title{
+        font-size:1rem;
+      }
+
+      .admin-subtitle{
+        font-size:.78rem;
+      }
+
+      .admin-links{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .admin-link{
+        width:100%;
+        min-height:38px;
+        padding:0 12px;
+        font-size:.8rem;
+      }
+
+      .admin-cms-card{
+        border-radius:22px;
+        min-height:calc(100vh - 170px);
+        overflow:auto;
+      }
+
+      #nc-root{
+        min-height:calc(100vh - 170px);
+      }
+
+      /* Decap CMS mobile safety */
+      #nc-root,
+      #nc-root *{
+        max-width:100%;
+      }
+
+      [class*="EditorContainer"],
+      [class*="PreviewPane"],
+      [class*="ControlPane"],
+      [class*="CollectionMain"],
+      [class*="EntryEditor"]{
+        max-width:100% !important;
+      }
+    }
+
+    /* Small Mobile */
+    @media(max-width:430px){
+      .admin-shell{
+        padding:10px;
+      }
+
+      .admin-topbar{
+        border-radius:20px;
+      }
+
+      .admin-subtitle{
+        display:none;
+      }
+
+      .admin-links{
+        grid-template-columns:1fr;
+      }
+
+      .admin-cms-card{
+        border-radius:20px;
+        min-height:calc(100vh - 154px);
+      }
+
+      #nc-root{
+        min-height:calc(100vh - 154px);
       }
     }
   </style>
 </head>
 
 <body>
+
+  <main class="admin-shell">
+
+    <header class="admin-topbar">
+
+      <div class="admin-brand">
+        <div class="admin-logo">VPN</div>
+
+        <div class="admin-title-wrap">
+          <h1 class="admin-title">VPNHUB Admin Panel</h1>
+          <p class="admin-subtitle">
+            Manage tutorials, videos, images, SEO, metadata, and publishing workflow.
+          </p>
+        </div>
+      </div>
+
+      <nav class="admin-links" aria-label="Admin quick links">
+        <a class="admin-link" href="/" target="_blank" rel="noopener">
+          View Site
+        </a>
+
+        <a class="admin-link" href="/tutorials/" target="_blank" rel="noopener">
+          Tutorials
+        </a>
+      </nav>
+
+    </header>
+
+    <section class="admin-cms-card">
+      <div id="nc-root"></div>
+    </section>
+
+  </main>
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
@@ -228,5 +483,6 @@
       }
     });
   </script>
+
 </body>
 </html>
