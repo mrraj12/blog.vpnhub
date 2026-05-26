@@ -14,7 +14,6 @@ difficulty: Beginner
 platform: All Devices
 youtubeId: Ps-ZkVSYkTM
 ---
-
 ## Overview
 
 Hiddify is a modern VPN and proxy client that helps you connect to secure VPN servers using a subscription link, QR code, or manual configuration.
@@ -22,6 +21,8 @@ Hiddify is a modern VPN and proxy client that helps you connect to secure VPN se
 It supports many common proxy and VPN formats, including VLESS, VMess, Trojan, Reality, Hysteria, TUIC, WireGuard, SSH, Clash, and Sing-box profiles.
 
 In this tutorial, you will learn how to set up a VPN profile in Hiddify step by step.
+
+<iframe class="youtube-video" src="https://www.youtube.com/embed/Ps-ZkVSYkTM" title="Setup" allowfullscreen></iframe>
 
 ## What You Need Before Starting
 
@@ -40,11 +41,11 @@ First, download the Hiddify app for your device.
 
 Hiddify is available for multiple platforms, including:
 
-- Android
-- iOS
-- Windows
-- macOS
-- Linux
+* Android
+* iOS
+* Windows
+* macOS
+* Linux
 
 Install the correct version for your device and open the app after installation.
 
@@ -62,9 +63,9 @@ On Android and iOS, you may see a system VPN permission popup. Tap **Allow** or 
 
 There are usually three common ways to add a VPN profile in Hiddify:
 
-- Add subscription link
-- Scan QR code
-- Import from clipboard
+* Add subscription link
+* Scan QR code
+* Import from clipboard
 
 The easiest method is using a subscription link.
 
@@ -121,10 +122,10 @@ Once the server list appears, choose a server.
 
 For better performance:
 
-- Choose a nearby location for faster speed.
-- Choose a low-ping server for browsing and gaming.
-- Choose a streaming-friendly server if you want to watch geo-restricted content.
-- Try another server if one server does not connect.
+* Choose a nearby location for faster speed.
+* Choose a low-ping server for browsing and gaming.
+* Choose a streaming-friendly server if you want to watch geo-restricted content.
+* Try another server if one server does not connect.
 
 Some Hiddify versions include automatic or delay-based server selection. If available, use this feature to find the fastest server.
 
@@ -147,10 +148,10 @@ After connecting, test if your VPN is working.
 
 You can check:
 
-- Your IP address has changed.
-- Websites load normally.
-- Restricted websites or apps are accessible.
-- Your connection speed is stable.
+* Your IP address has changed.
+* Websites load normally.
+* Restricted websites or apps are accessible.
+* Your connection speed is stable.
 
 If the internet does not work after connecting, disconnect and try another server.
 
@@ -164,11 +165,11 @@ Use VPN/TUN mode if you want all apps on your device to use the VPN connection.
 
 This is useful for:
 
-- Browsers
-- Messaging apps
-- Streaming apps
-- Games
-- System-wide privacy
+* Browsers
+* Messaging apps
+* Streaming apps
+* Games
+* System-wide privacy
 
 ### Auto Update Subscription
 
@@ -207,10 +208,10 @@ Try these fixes:
 
 This can happen if:
 
-- The link is expired.
-- The link was copied incorrectly.
-- Your VPN account has expired.
-- Your network blocks the subscription domain.
+* The link is expired.
+* The link was copied incorrectly.
+* Your VPN account has expired.
+* Your network blocks the subscription domain.
 
 Ask your VPN provider to resend the subscription link.
 
@@ -228,11 +229,11 @@ Try these steps:
 
 To use Hiddify safely:
 
-- Only use subscription links from trusted providers.
-- Do not share your subscription link publicly.
-- Keep the app updated.
-- Avoid unknown configuration files.
-- Follow local laws and regulations when using VPN services.
+* Only use subscription links from trusted providers.
+* Do not share your subscription link publicly.
+* Keep the app updated.
+* Avoid unknown configuration files.
+* Follow local laws and regulations when using VPN services.
 
 ## Final Thoughts
 
