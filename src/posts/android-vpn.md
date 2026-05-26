@@ -6,6 +6,7 @@ category: Android VPN
 author: Admin
 readTime: "5"
 image: /uploads/android-vpn.svg
+featured: true
 difficulty: Beginner
 ---
 
