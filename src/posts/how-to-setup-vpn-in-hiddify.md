@@ -12,6 +12,7 @@ image: /images/uploads/hiddify-vpn-setup.jpg
 featured: true
 difficulty: Beginner
 platform: All Devices
+youtubeId: Ps-ZkVSYkTM
 ---
 
 ## Overview
