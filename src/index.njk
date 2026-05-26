@@ -3,46 +3,319 @@ layout: base.njk
 title: VPNHUB - Tutorials & VPN Guides
 description: VPN tutorials, privacy guides, server tips, and video lessons.
 ---
+
 <header class="hero">
   <div class="hero-inner">
-    <span class="badge">VPN tutorials • Privacy • Server guides</span>
-    <h1>Learn VPN, Privacy & Online Security with <span class="highlight">VPNHUB</span></h1>
-    <p>Step-by-step tutorials with text, images, and video lessons. Add or edit posts anytime from the Netlify admin panel.</p>
+
+    <span class="badge">
+      VPN Security • Privacy Protection • Online Freedom
+    </span>
+
+    <h1>
+      Your Privacy,
+      <span class="highlight">Protected</span>
+    </h1>
+
+    <p>
+      Discover the latest insights on digital privacy, VPN security,
+      online freedom, streaming access, and server management with
+      step-by-step tutorials from VPNHUB.
+    </p>
+
     <div class="actions">
       <a class="btn" href="/tutorials/">View Tutorials</a>
       <a class="btn secondary" href="/videos/">Watch Videos</a>
     </div>
-   
-<!--
-<div class="cms-note">
-  Admin editing is ready: after Netlify setup, open <strong>/admin/</strong> to add or update blog posts.
-</div>
--->
-</div>
 
   </div>
 </header>
+
+<!-- TOP 3 TUTORIALS -->
+
 <section class="section">
   <div class="section-inner">
-    <h2>Latest Tutorials</h2>
-    <p class="lead">Fresh guides and blog posts from VPNHUB.</p>
-    <div class="grid">
-      {% for post in collections.posts | reverse | slice(0, 6) %}
+
+    <h2>Top Tutorials</h2>
+    <p class="lead">
+      Featured VPN guides and tutorials from VPNHUB.
+    </p>
+
+    <div class="grid top-tutorials">
+
+      {% for post in collections.posts | reverse | slice(0,3) %}
       <article class="post-card">
-        {% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}
-        <div class="meta">{{ post.data.date }} · {{ post.data.category }}</div>
+
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+        {% endif %}
+
+        <div class="meta">
+          {{ post.data.date }} · {{ post.data.category }}
+        </div>
+
         <h3>{{ post.data.title }}</h3>
+
         <p>{{ post.data.description }}</p>
-        <a class="read-more" href="{{ post.url }}">Read More →</a>
+
+        <a class="read-more" href="{{ post.url }}">
+          Read More →
+        </a>
+
       </article>
       {% endfor %}
+
     </div>
+
   </div>
 </section>
+
+<!-- LATEST TUTORIALS -->
+
+<section class="section">
+  <div class="section-inner">
+
+    <h2>Latest Tutorials</h2>
+
+    <p class="lead">
+      Fresh guides and blog posts from VPNHUB.
+    </p>
+
+    <div class="grid">
+
+      {% for post in collections.posts | reverse | slice(0,6) %}
+      <article class="post-card">
+
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+        {% endif %}
+
+        <div class="meta">
+          {{ post.data.date }} · {{ post.data.category }}
+        </div>
+
+        <h3>{{ post.data.title }}</h3>
+
+        <p>{{ post.data.description }}</p>
+
+        <a class="read-more" href="{{ post.url }}">
+          Read More →
+        </a>
+
+      </article>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+
 <section class="section">
   <div class="section-inner grid">
-    <div class="card"><h3>Text Tutorials</h3><p>Write detailed setup guides, step-by-step instructions, troubleshooting tips, and privacy advice.</p></div>
-    <div class="card"><h3>Images</h3><p>Upload screenshots and tutorial images directly from the CMS editor.</p></div>
-    <div class="card"><h3>Videos</h3><p>Embed YouTube videos or add your own video tutorial links inside posts.</p></div>
+
+    <div class="card">
+      <h3>🔒 VPN Security</h3>
+      <p>
+        Learn how VPN encryption protects your privacy and secures your online activities.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🖼 Images & Screenshots</h3>
+      <p>
+        Upload screenshots and tutorial images directly through the CMS editor.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎥 Video Tutorials</h3>
+      <p>
+        Embed YouTube videos and create complete visual learning guides.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🌎 Server Guides</h3>
+      <p>
+        Learn V2Ray, Clash, Sing-box, VPS setup, and VPN server management.
+      </p>
+    </div>
+
   </div>
 </section>
+
+<style>
+.hero{
+  background:linear-gradient(
+    135deg,
+    #111827,
+    #4c1d95,
+    #1e3a8a
+  );
+  padding:100px 20px;
+  text-align:center;
+}
+
+.hero-inner{
+  max-width:1000px;
+  margin:auto;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:999px;
+  background:rgba(168,85,247,.15);
+  color:#c084fc;
+  border:1px solid rgba(168,85,247,.3);
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+.hero h1{
+  font-size:4rem;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:20px;
+  line-height:1.2;
+}
+
+.highlight{
+  color:#a855f7;
+}
+
+.hero p{
+  max-width:750px;
+  margin:0 auto 30px;
+  color:#d1d5db;
+  font-size:1.3rem;
+  line-height:1.8;
+}
+
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  background:linear-gradient(
+    90deg,
+    #7c3aed,
+    #2563eb
+  );
+  color:#fff;
+  padding:14px 28px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn.secondary{
+  background:#ffffff20;
+  border:1px solid #ffffff30;
+}
+
+.section{
+  padding:70px 20px;
+}
+
+.section-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section h2{
+  text-align:center;
+  font-size:2.5rem;
+  margin-bottom:10px;
+}
+
+.lead{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+}
+
+.post-card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.post-card:hover{
+  transform:translateY(-6px);
+}
+
+.post-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.post-card h3{
+  padding:0 20px;
+  font-size:1.3rem;
+}
+
+.post-card p{
+  padding:0 20px;
+  color:#6b7280;
+}
+
+.meta{
+  padding:15px 20px 0;
+  color:#9ca3af;
+  font-size:13px;
+}
+
+.read-more{
+  display:inline-block;
+  padding:20px;
+  text-decoration:none;
+  color:#7c3aed;
+  font-weight:600;
+}
+
+.top-tutorials .post-card{
+  border:2px solid #a855f7;
+}
+
+.card{
+  background:#fff;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:2.5rem;
+}
+
+.hero p{
+  font-size:1.1rem;
+}
+
+.section h2{
+  font-size:2rem;
+}
+
+}
+</style>
