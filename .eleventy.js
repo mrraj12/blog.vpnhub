@@ -28,7 +28,9 @@ module.exports = function(eleventyConfig) {
   }
 
   function getAllTutorialPosts(collectionApi) {
-    return sortNewestFirst(collectionApi.getFilteredByTag("posts"));
+    return sortNewestFirst(
+      collectionApi.getFilteredByGlob("./src/posts/*.md")
+    );
   }
 
   function getHomepageTutorialPosts(collectionApi) {
