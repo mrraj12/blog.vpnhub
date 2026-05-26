@@ -185,15 +185,6 @@
       background:transparent;
     }
 
-    /* Decap CMS polish */
-    [class*="AppHeader"],
-    [class*="Sidebar"],
-    [class*="Toolbar"],
-    [class*="CollectionTop"]{
-      backdrop-filter:blur(18px) saturate(180%) !important;
-      -webkit-backdrop-filter:blur(18px) saturate(180%) !important;
-    }
-
     [class*="LoginPage"],
     [class*="AuthenticationPage"]{
       background:transparent !important;
@@ -239,28 +230,6 @@
       max-width:100%;
     }
 
-    /* Tablet */
-    @media(max-width:900px){
-      .admin-shell{
-        padding:16px;
-        gap:16px;
-      }
-
-      .admin-topbar{
-        border-radius:24px;
-      }
-
-      .admin-cms-card{
-        border-radius:26px;
-        min-height:calc(100vh - 112px);
-      }
-
-      #nc-root{
-        min-height:calc(100vh - 112px);
-      }
-    }
-
-    /* Mobile */
     @media(max-width:768px){
       .admin-shell{
         padding:12px;
@@ -315,30 +284,11 @@
       #nc-root{
         min-height:calc(100vh - 170px);
       }
-
-      /* Decap CMS mobile safety */
-      #nc-root,
-      #nc-root *{
-        max-width:100%;
-      }
-
-      [class*="EditorContainer"],
-      [class*="PreviewPane"],
-      [class*="ControlPane"],
-      [class*="CollectionMain"],
-      [class*="EntryEditor"]{
-        max-width:100% !important;
-      }
     }
 
-    /* Small Mobile */
     @media(max-width:430px){
       .admin-shell{
         padding:10px;
-      }
-
-      .admin-topbar{
-        border-radius:20px;
       }
 
       .admin-subtitle{
@@ -347,15 +297,6 @@
 
       .admin-links{
         grid-template-columns:1fr;
-      }
-
-      .admin-cms-card{
-        border-radius:20px;
-        min-height:calc(100vh - 154px);
-      }
-
-      #nc-root{
-        min-height:calc(100vh - 154px);
       }
     }
   </style>
@@ -399,7 +340,70 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    CMS.registerPreviewStyle("/styles/global.css");
+    CMS.registerPreviewStyle("/admin/preview.css");
+
+    const PostPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const image = entry.getIn(["data", "image"]);
+        const title = entry.getIn(["data", "title"]) || "Tutorial Title";
+        const description = entry.getIn(["data", "description"]) || "";
+        const date = entry.getIn(["data", "date"]) || "";
+        const category = entry.getIn(["data", "category"]) || "VPN Tutorial";
+        const author = entry.getIn(["data", "author"]) || "VPNHUB Team";
+        const readTime = entry.getIn(["data", "readTime"]) || "5 min read";
+        const difficulty = entry.getIn(["data", "difficulty"]) || "";
+        const body = this.props.widgetFor("body");
+
+        return h("main", { className: "admin-preview-page" },
+          h("section", { className: "admin-preview-wrap" },
+
+            h("article", { className: "admin-preview-card" },
+
+              image
+                ? h("img", {
+                    className: "admin-preview-cover",
+                    src: image,
+                    alt: title
+                  })
+                : h("div", { className: "admin-preview-placeholder" },
+                    h("div", { className: "admin-preview-vpn-icon" }, "VPN")
+                  ),
+
+              h("div", { className: "admin-preview-body" },
+
+                h("div", { className: "admin-preview-top" },
+                  h("span", { className: "admin-preview-category" }, category),
+
+                  h("div", { className: "admin-preview-meta" },
+                    h("span", {}, "◷ " + readTime),
+                    h("span", {}, "♙ " + author)
+                  )
+                ),
+
+                h("h1", {}, title),
+
+                date
+                  ? h("p", { className: "admin-preview-date" }, date)
+                  : null,
+
+                description
+                  ? h("p", { className: "admin-preview-description" }, description)
+                  : null,
+
+                difficulty
+                  ? h("span", { className: "admin-preview-difficulty" }, difficulty)
+                  : null,
+
+                h("div", { className: "admin-preview-content" }, body)
+              )
+            )
+          )
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate("posts", PostPreview);
 
     CMS.registerEditorComponent({
       id: "responsiveImage",
@@ -440,9 +444,9 @@
       },
       toPreview: function(data) {
         return `
-<figure style="margin:24px 0;">
-  <img src="${data.src}" alt="${data.alt}" style="width:100%;border-radius:18px;">
-  <figcaption style="color:#94a3b8;text-align:center;margin-top:8px;">${data.caption || ""}</figcaption>
+<figure class="article-image">
+  <img src="${data.src}" alt="${data.alt}">
+  <figcaption>${data.caption || ""}</figcaption>
 </figure>
         `;
       }
@@ -476,9 +480,7 @@
       },
       toPreview: function(data) {
         return `
-<div style="aspect-ratio:16/9;background:#111827;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;">
-  YouTube Video: ${data.id}
-</div>
+<iframe class="youtube-video" src="https://www.youtube.com/embed/${data.id}" title="${data.title || "VPNHUB Video"}" allowfullscreen></iframe>
         `;
       }
     });
