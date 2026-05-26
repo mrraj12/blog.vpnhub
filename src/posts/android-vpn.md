@@ -7,6 +7,8 @@ author: Admin
 readTime: "5"
 image: /uploads/android-vpn.svg
 featured: true
+layout: post.njk
+tags: posts
 difficulty: Beginner
 platform: Android
 ---
