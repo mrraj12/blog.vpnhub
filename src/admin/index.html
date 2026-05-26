@@ -1,12 +1,232 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPNHUB Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VPNHUB Admin Panel</title>
+
+  <style>
+    :root{
+      --bg:#111827;
+      --purple:#a855f7;
+      --blue:#2563eb;
+      --text:#ffffff;
+      --muted:#d1d5db;
+      --glass:rgba(255,255,255,.10);
+      --border:rgba(216,180,254,.18);
+    }
+
+    html,
+    body{
+      margin:0;
+      min-height:100%;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(168,85,247,.28), transparent 30%),
+        radial-gradient(circle at 86% 68%, rgba(37,99,235,.28), transparent 34%),
+        linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
+      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body::before{
+      content:"VPNHUB Admin";
+      position:fixed;
+      top:22px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1;
+      padding:12px 24px;
+      border-radius:999px;
+      color:var(--text);
+      font-size:15px;
+      font-weight:900;
+      letter-spacing:.02em;
+      border:1px solid var(--border);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.14),
+          rgba(168,85,247,.12),
+          rgba(37,99,235,.12)
+        );
+      backdrop-filter:blur(24px) saturate(190%);
+      -webkit-backdrop-filter:blur(24px) saturate(190%);
+      box-shadow:
+        0 18px 48px rgba(0,0,0,.26),
+        inset 0 1px 0 rgba(255,255,255,.18);
+      pointer-events:none;
+    }
+
+    body::after{
+      content:"Manage VPN tutorials, videos, guides, images, SEO, and post metadata";
+      position:fixed;
+      top:76px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      text-align:center;
+      pointer-events:none;
+      width:min(90vw,680px);
+    }
+
+    /* Decap CMS root */
+    #nc-root{
+      position:relative;
+      z-index:2;
+      min-height:100vh;
+      padding-top:112px;
+    }
+
+    /* Login box glass look */
+    [class*="LoginPage"],
+    [class*="AuthenticationPage"]{
+      background:transparent !important;
+    }
+
+    [class*="LoginPage"] section,
+    [class*="AuthenticationPage"] section{
+      border-radius:26px !important;
+      border:1px solid var(--border) !important;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(31,41,55,.86),
+          rgba(76,29,149,.34),
+          rgba(30,58,138,.24)
+        ) !important;
+      backdrop-filter:blur(28px) saturate(190%) !important;
+      -webkit-backdrop-filter:blur(28px) saturate(190%) !important;
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.36),
+        inset 0 1px 0 rgba(255,255,255,.14) !important;
+    }
+
+    /* General Decap CMS polish */
+    a,
+    button{
+      transition:.2s ease !important;
+    }
+
+    button{
+      border-radius:12px !important;
+    }
+
+    input,
+    textarea,
+    select{
+      border-radius:12px !important;
+    }
+
+    @media(max-width:768px){
+      body::before{
+        top:14px;
+        font-size:13px;
+        padding:10px 18px;
+      }
+
+      body::after{
+        top:62px;
+        font-size:12px;
+        line-height:1.5;
+      }
+
+      #nc-root{
+        padding-top:98px;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    CMS.registerPreviewStyle("/styles/global.css");
+
+    CMS.registerEditorComponent({
+      id: "responsiveImage",
+      label: "Responsive Image",
+      fields: [
+        {
+          name: "src",
+          label: "Image",
+          widget: "image"
+        },
+        {
+          name: "alt",
+          label: "Alt Text",
+          widget: "string"
+        },
+        {
+          name: "caption",
+          label: "Caption",
+          widget: "string",
+          required: false
+        }
+      ],
+      pattern: /^<figure class="article-image">\s*<img src="(.*)" alt="(.*)">\s*<figcaption>(.*)<\/figcaption>\s*<\/figure>$/s,
+      fromBlock: function(match) {
+        return {
+          src: match[1],
+          alt: match[2],
+          caption: match[3]
+        };
+      },
+      toBlock: function(data) {
+        return `
+<figure class="article-image">
+  <img src="${data.src}" alt="${data.alt}">
+  <figcaption>${data.caption || ""}</figcaption>
+</figure>
+        `.trim();
+      },
+      toPreview: function(data) {
+        return `
+<figure style="margin:24px 0;">
+  <img src="${data.src}" alt="${data.alt}" style="width:100%;border-radius:18px;">
+  <figcaption style="color:#94a3b8;text-align:center;margin-top:8px;">${data.caption || ""}</figcaption>
+</figure>
+        `;
+      }
+    });
+
+    CMS.registerEditorComponent({
+      id: "youtube",
+      label: "YouTube Video",
+      fields: [
+        {
+          name: "id",
+          label: "YouTube Video ID",
+          widget: "string"
+        },
+        {
+          name: "title",
+          label: "Video Title",
+          widget: "string",
+          required: false
+        }
+      ],
+      pattern: /^<iframe class="youtube-video" src="https:\/\/www\.youtube\.com\/embed\/(.*)" title="(.*)" allowfullscreen><\/iframe>$/s,
+      fromBlock: function(match) {
+        return {
+          id: match[1],
+          title: match[2]
+        };
+      },
+      toBlock: function(data) {
+        return `<iframe class="youtube-video" src="https://www.youtube.com/embed/${data.id}" title="${data.title || "VPNHUB Video"}" allowfullscreen></iframe>`;
+      },
+      toPreview: function(data) {
+        return `
+<div style="aspect-ratio:16/9;background:#111827;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;">
+  YouTube Video: ${data.id}
+</div>
+        `;
+      }
+    });
+  </script>
 </body>
 </html>
