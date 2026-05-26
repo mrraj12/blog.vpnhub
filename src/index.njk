@@ -67,7 +67,7 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   </section>
 
   <!-- Latest Insights -->
-  <section class="section">
+  <section class="section latest-section">
     <div class="section-inner">
 
       <h2>Latest Insights</h2>
@@ -106,46 +106,6 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
     </div>
   </section>
 
-  <!-- Tutorials -->
-  <section class="section tutorials-section">
-    <div class="section-inner">
-
-      <h2>Tutorials</h2>
-
-      <div class="post-grid">
-
-        {% for post in posts %}
-        {% if loop.index0 >= 3 and loop.index0 < 6 %}
-        <article class="post-card">
-
-          {% if post.data.image %}
-          <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
-          {% endif %}
-
-          <div class="post-body">
-
-            <div class="post-meta">
-              <span class="category">{{ post.data.category or "Tutorial" }}</span>
-              <span class="read-time">◷ {{ post.data.readTime or "5 min read" }}</span>
-            </div>
-
-            <h3>{{ post.data.title }}</h3>
-
-            <p>{{ post.data.description }}</p>
-
-            <a href="{{ post.url }}" class="read-more">Open Tutorial →</a>
-
-          </div>
-
-        </article>
-        {% endif %}
-        {% endfor %}
-
-      </div>
-
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-inner">
@@ -162,6 +122,12 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
 </main>
 
 <style>
+/* Hide footer from base.njk on this homepage */
+footer,
+.site-footer{
+  display:none !important;
+}
+
 .vpnhub-page{
   min-height:100vh;
   color:#ffffff;
@@ -284,7 +250,11 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   line-height:1.55;
 }
 
-/* Cards */
+/* Latest Insights Cards */
+.latest-section{
+  padding-bottom:60px;
+}
+
 .post-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -359,14 +329,9 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   font-weight:900;
 }
 
-/* Tutorials */
-.tutorials-section{
-  padding-top:30px;
-}
-
 /* CTA */
 .cta-section{
-  padding:95px 20px 100px;
+  padding:95px 20px 120px;
   text-align:center;
 }
 
