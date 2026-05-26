@@ -2,42 +2,282 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title or site.siteName }}</title>
-  <meta name="description" content="{{ description or site.description }}">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <title>{{ title or "VPNHUB" }}</title>
+
+  {% if description %}
+  <meta name="description" content="{{ description }}">
+  {% endif %}
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:#111827;
+      color:#ffffff;
+    }
+
+    a{
+      color:inherit;
+    }
+
+    /* =========================
+       DESKTOP HEADER
+    ========================= */
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#111827;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner{
+      max-width:1200px;
+      margin:0 auto;
+      min-height:78px;
+      padding:0 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#ffffff;
+      font-size:1.55rem;
+      font-weight:950;
+      letter-spacing:-.035em;
+    }
+
+    .brand-icon{
+      color:#c084fc;
+      font-size:1.55rem;
+      line-height:1;
+    }
+
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    .desktop-nav a{
+      text-decoration:none;
+      color:#ffffff;
+      font-size:1rem;
+      font-weight:800;
+      opacity:.9;
+      transition:.2s ease;
+    }
+
+    .desktop-nav a:hover{
+      color:#c084fc;
+      opacity:1;
+    }
+
+    .mobile-menu-btn{
+      display:none;
+    }
+
+    .mobile-menu{
+      display:none;
+    }
+
+    /* =========================
+       MOBILE HEADER LIKE SCREENSHOT
+    ========================= */
+
+    @media(max-width:768px){
+      .site-header{
+        position:sticky;
+        top:0;
+        padding:14px 14px 0;
+        background:#050509;
+        border-bottom:0;
+      }
+
+      .nav-inner{
+        min-height:88px;
+        padding:0 24px;
+        border-radius:44px;
+        border:1px solid rgba(255,255,255,.1);
+        background:#07070d;
+        box-shadow:0 14px 40px rgba(0,0,0,.35);
+      }
+
+      .brand{
+        font-size:1.75rem;
+      }
+
+      .brand-icon{
+        font-size:1.45rem;
+      }
+
+      .desktop-nav{
+        display:none;
+      }
+
+      .mobile-menu-btn{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:58px;
+        height:58px;
+        border:0;
+        border-radius:50%;
+        background:transparent;
+        color:#ffffff;
+        font-size:2.25rem;
+        line-height:1;
+        cursor:pointer;
+      }
+
+      .mobile-menu-btn.is-open{
+        background:#24242d;
+      }
+
+      .mobile-menu{
+        position:absolute;
+        top:118px;
+        right:22px;
+        width:min(64vw,360px);
+        padding:44px 52px 36px;
+        border-radius:28px;
+        border:1px solid rgba(255,255,255,.12);
+        background:#1b213c;
+        box-shadow:0 28px 80px rgba(0,0,0,.5);
+      }
+
+      .mobile-menu.active{
+        display:block;
+      }
+
+      .mobile-menu a{
+        display:block;
+        padding:0 0 44px;
+        color:#ffffff;
+        text-decoration:none;
+        font-size:1.75rem;
+        font-weight:800;
+        line-height:1.2;
+      }
+
+      .mobile-menu a:last-child{
+        padding-bottom:0;
+      }
+
+      .mobile-menu-divider{
+        height:1px;
+        margin:0 0 34px;
+        background:rgba(255,255,255,.18);
+      }
+    }
+
+    @media(max-width:420px){
+      .brand{
+        font-size:1.45rem;
+      }
+
+      .mobile-menu{
+        width:68vw;
+        right:18px;
+        padding:38px 42px 34px;
+      }
+
+      .mobile-menu a{
+        font-size:1.45rem;
+        padding-bottom:38px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <nav class="navbar">
-        <a class="logo" href="/">
-      <span class="shield-icon">♢</span>
-      VPNHUB
-    </a>
-    <button class="menu-toggle" aria-label="Open menu">☰</button>
-    <div class="nav-links">
-      <a href="/">Home</a>
+
+  <header class="site-header">
+    <div class="nav-inner">
+
+      <a href="/" class="brand" aria-label="VPNHUB Home">
+        <span class="brand-icon">◇</span>
+        <span>VPNHUB</span>
+      </a>
+
+      <!-- Desktop menu -->
+      <nav class="desktop-nav" aria-label="Desktop navigation">
+        <a href="/tutorials/">Tutorials</a>
+        <a href="/videos/">Videos</a>
+        <a href="/about/">About</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        type="button"
+        onclick="toggleMobileMenu()"
+        aria-label="Open mobile menu"
+        aria-expanded="false"
+      >
+        <span id="mobileMenuIcon">☰</span>
+      </button>
+
+    </div>
+
+    <!-- Mobile dropdown -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
       <a href="/tutorials/">Tutorials</a>
       <a href="/videos/">Videos</a>
       <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
-    
-    </div>
-  </nav>
+      <div class="mobile-menu-divider"></div>
+    </nav>
+  </header>
 
   {{ content | safe }}
 
-  <footer class="footer">
-    <div>
-      <strong>VPN<span>HUB</span></strong>
-      <p>VPN tutorials, privacy guides, and server setup lessons.</p>
-    </div>
-    <div class="footer-links">
-      <a href="/privacy/">Privacy</a>
-      <a href="/contact/">Contact</a>
-      
-    </div>
-  </footer>
-  <script src="/assets/js/main.js"></script>
+  <script>
+    function toggleMobileMenu(){
+      const menu = document.getElementById("mobileMenu");
+      const icon = document.getElementById("mobileMenuIcon");
+      const btn = document.getElementById("mobileMenuBtn");
+
+      if(!menu || !icon || !btn) return;
+
+      const isOpen = menu.classList.toggle("active");
+
+      btn.classList.toggle("is-open", isOpen);
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      icon.textContent = isOpen ? "×" : "☰";
+    }
+
+    document.addEventListener("click", function(event){
+      const menu = document.getElementById("mobileMenu");
+      const btn = document.getElementById("mobileMenuBtn");
+      const icon = document.getElementById("mobileMenuIcon");
+
+      if(!menu || !btn || !icon) return;
+
+      const clickedInsideMenu = menu.contains(event.target);
+      const clickedButton = btn.contains(event.target);
+
+      if(!clickedInsideMenu && !clickedButton){
+        menu.classList.remove("active");
+        btn.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+        icon.textContent = "☰";
+      }
+    });
+  </script>
+
 </body>
 </html>
