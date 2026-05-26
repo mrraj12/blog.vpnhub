@@ -17,40 +17,76 @@ module.exports = function(eleventyConfig) {
     });
   });
 
-  // All tutorials/posts, newest first
+  function sortNewestFirst(posts) {
+    return posts.sort(function(a, b) {
+      return new Date(b.data.date || 0) - new Date(a.data.date || 0);
+    });
+  }
+
+  function isFeatured(post) {
+    return post.data.featured === true || post.data.featured === "true";
+  }
+
+  function getAllPosts(collectionApi) {
+    return sortNewestFirst(collectionApi.getFilteredByTag("posts"));
+  }
+
+  function getHomepagePosts(collectionApi) {
+    const allPosts = getAllPosts(collectionApi);
+
+    const featuredPosts = allPosts.filter(function(post) {
+      return isFeatured(post);
+    });
+
+    const nonFeaturedPosts = allPosts.filter(function(post) {
+      return !isFeatured(post);
+    });
+
+    const homepagePosts = [];
+
+    featuredPosts.forEach(function(post) {
+      if (homepagePosts.length < 3) {
+        homepagePosts.push(post);
+      }
+    });
+
+    nonFeaturedPosts.forEach(function(post) {
+      if (homepagePosts.length < 3) {
+        homepagePosts.push(post);
+      }
+    });
+
+    return homepagePosts.slice(0, 3);
+  }
+
   eleventyConfig.addCollection("allTutorials", function(collectionApi) {
-    return collectionApi
-      .getFilteredByTag("posts")
-      .sort(function(a, b) {
-        return new Date(b.data.date) - new Date(a.data.date);
-      });
+    return getAllPosts(collectionApi);
   });
 
-  // Homepage pinned tutorials only
-  // Add featured: true in post frontmatter to show here
+  // Homepage system:
+  // featured true first, then auto-fill with latest posts until 3 posts
+  eleventyConfig.addCollection("homepageTutorials", function(collectionApi) {
+    return getHomepagePosts(collectionApi);
+  });
+
+  // Old name support, in case your index.njk still uses pinnedTutorials
   eleventyConfig.addCollection("pinnedTutorials", function(collectionApi) {
-    return collectionApi
-      .getFilteredByTag("posts")
-      .filter(function(post) {
-        return post.data.featured === true;
-      })
-      .sort(function(a, b) {
-        return new Date(b.data.date) - new Date(a.data.date);
-      })
-      .slice(0, 3);
+    return getHomepagePosts(collectionApi);
   });
 
-  // Tutorials page posts
-  // These are all posts except featured/pinned tutorials
+  // Tutorials page:
+  // show all posts except the 3 posts already shown on homepage
   eleventyConfig.addCollection("regularTutorials", function(collectionApi) {
-    return collectionApi
-      .getFilteredByTag("posts")
-      .filter(function(post) {
-        return post.data.featured !== true;
-      })
-      .sort(function(a, b) {
-        return new Date(b.data.date) - new Date(a.data.date);
-      });
+    const allPosts = getAllPosts(collectionApi);
+    const homepagePosts = getHomepagePosts(collectionApi);
+
+    const homepageUrls = homepagePosts.map(function(post) {
+      return post.url;
+    });
+
+    return allPosts.filter(function(post) {
+      return !homepageUrls.includes(post.url);
+    });
   });
 
   return {
