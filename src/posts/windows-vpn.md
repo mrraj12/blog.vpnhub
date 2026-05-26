@@ -3,6 +3,7 @@ title: How to Set Up VPN on Windows
 description: Learn how to connect your Windows PC to a VPN safely.
 date: 2026-05-24
 category: Windows VPN
+featured: true
 image: /uploads/windows-vpn.svg
 ---
 
