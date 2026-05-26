@@ -2,25 +2,229 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "src/uploads"
-public_folder: "/uploads"
+local_backend: true
 
-site_url: https://vpnhub.uk
-display_url: https://vpnhub.uk
-logo_url: /uploads/privacy.svg
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: "/"
+display_url: "/"
+logo_url: "/images/uploads/vpnhub-logo.png"
+
+publish_mode: editorial_workflow
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
   - name: "posts"
-    label: "Blog Posts"
+    label: "VPN Tutorials"
+    label_singular: "VPN Tutorial"
     folder: "src/posts"
     create: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+    preview_path: "{{slug}}/"
+    editor:
+      preview: true
+
+    sortable_fields:
+      - "date"
+      - "title"
+      - "category"
+      - "readTime"
+
+    view_filters:
+      - label: "Android VPN"
+        field: "category"
+        pattern: "Android VPN"
+
+      - label: "Security"
+        field: "category"
+        pattern: "Security"
+
+      - label: "Streaming"
+        field: "category"
+        pattern: "Streaming"
+
+      - label: "Server Guide"
+        field: "category"
+        pattern: "Server Guide"
+
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Category", name: "category", widget: "string", default: "Tutorial" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post.njk"
+
+      - label: "Tags"
+        name: "tags"
+        widget: "hidden"
+        default:
+          - "posts"
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Example: How to Set Up VPN on Android"
+
+      - label: "SEO Description"
+        name: "description"
+        widget: "text"
+        hint: "Short description for Google and article cards."
+        pattern:
+          - "^.{40,180}$"
+          - "Description should be between 40 and 180 characters."
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Android VPN"
+          - "iOS VPN"
+          - "Windows VPN"
+          - "Mac VPN"
+          - "Router VPN"
+          - "Security"
+          - "Privacy"
+          - "Streaming"
+          - "Server Guide"
+          - "Troubleshooting"
+          - "Business"
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "VPNHUB Team"
+
+      - label: "Read Time"
+        name: "readTime"
+        widget: "string"
+        default: "5 min read"
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Recommended size: 1200x700 or larger."
+
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+
+      - label: "Difficulty"
+        name: "difficulty"
+        widget: "select"
+        default: "Beginner"
+        options:
+          - "Beginner"
+          - "Intermediate"
+          - "Advanced"
+
+      - label: "Device / Platform"
+        name: "platform"
+        widget: "select"
+        required: false
+        options:
+          - "Android"
+          - "iOS"
+          - "Windows"
+          - "Mac"
+          - "Router"
+          - "Linux"
+          - "Browser"
+          - "All Devices"
+
+      - label: "YouTube Video ID"
+        name: "youtubeId"
+        widget: "string"
+        required: false
+        hint: "Only paste the YouTube video ID, not the full URL."
+
+      - label: "Table of Contents"
+        name: "toc"
+        widget: "list"
+        required: false
+        summary: "{{fields.item}}"
+        field:
+          label: "Section"
+          name: "item"
+          widget: "string"
+
+      - label: "Article Body"
+        name: "body"
+        widget: "markdown"
+        hint: "You can add images anywhere in the article body."
+
+  - name: "videos"
+    label: "Videos"
+    folder: "src/videos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "VPN Setup"
+          - "Privacy"
+          - "Streaming"
+          - "Server Guide"
+          - "Troubleshooting"
+
+      - label: "YouTube Video ID"
+        name: "youtubeId"
+        widget: "string"
+
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "src/about.njk"
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+
+          - label: "Description"
+            name: "description"
+            widget: "text"
