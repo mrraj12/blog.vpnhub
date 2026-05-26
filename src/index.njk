@@ -4,232 +4,463 @@ title: VPNHUB - Tutorials & VPN Guides
 description: VPN tutorials, privacy guides, server tips, and video lessons.
 ---
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-  <span id="themeIcon">🌙</span>
-</button>
+<div class="page-shell">
 
-<header class="hero">
-  <div class="hero-inner">
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark and light mode">
+    <span id="themeIcon">🌙</span>
+  </button>
 
-    <span class="badge">
-      VPN Security • Privacy Protection • Online Freedom
-    </span>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-inner">
 
-    <h1>
-      Your Privacy,
-      <span class="highlight">Protected</span>
-    </h1>
+      <a href="/" class="brand">
+        <span class="brand-icon">◇</span>
+        <span>VPNHUB</span>
+      </a>
 
-    <p>
-      Discover the latest insights on digital privacy, VPN security,
-      online freedom, streaming access, and server management with
-      step-by-step tutorials from VPNHUB.
-    </p>
+      <nav class="desktop-nav">
+        <a href="/">Home</a>
+        <a href="/tutorials/">Tutorials</a>
+        <a href="/videos/">Videos</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
 
-    <div class="actions">
-      <a class="btn" href="/tutorials/">View Tutorials</a>
-      <a class="btn secondary" href="/videos/">Watch Videos</a>
+      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <span id="mobileMenuIcon">☰</span>
+      </button>
+
     </div>
 
-  </div>
-</header>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">Home</a>
+      <a href="/tutorials/">Tutorials</a>
+      <a href="/videos/">Videos</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </header>
 
-<section class="section latest-section">
-  <div class="section-inner">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
 
-    <h2>Latest Insights</h2>
+      <span class="badge">
+        VPN Security • Privacy Protection • Online Freedom
+      </span>
 
-    <div class="grid">
+      <h1>
+        Your Privacy,
+        <span>Protected</span>
+      </h1>
 
-      {% for post in collections.posts | reverse | slice(0,3) %}
-      <article class="post-card">
+      <p>
+        Discover the latest insights on digital privacy, VPN security,
+        online freedom, streaming access, and server management with
+        step-by-step tutorials from VPNHUB.
+      </p>
 
-        {% if post.data.image %}
-        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
-        {% endif %}
+      <div class="hero-actions">
+        <a class="btn primary" href="/tutorials/">View Tutorials</a>
+        <a class="btn secondary" href="/videos/">Watch Videos</a>
+      </div>
 
-        <div class="post-content">
+    </div>
+  </section>
 
-          <div class="post-top">
-            <span class="category">{{ post.data.category }}</span>
-            <span class="read-time">◷ 5 min read</span>
+  <!-- Features -->
+  <section class="section features-section">
+    <div class="section-inner">
+
+      <h2>Why Choose VPNHUB?</h2>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Military-Grade Encryption</h3>
+          <p>AES-256 style encryption guidance to help protect your data from hackers and surveillance.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast Speeds</h3>
+          <p>Learn how to choose optimized VPN servers for better browsing, streaming, and gaming.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🌎</div>
+          <h3>Global Server Network</h3>
+          <p>Access region-based VPN tutorials, server setup guides, and global privacy tips.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>Understand no-log policies, secure DNS, private browsing, and safer internet habits.</p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Latest Insights -->
+  <section class="section latest-section">
+    <div class="section-inner">
+
+      <h2>Latest Insights</h2>
+
+      <div class="post-grid">
+
+        {% for post in collections.posts | reverse | slice(0,3) %}
+        <article class="post-card">
+
+          {% if post.data.image %}
+          <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+          {% endif %}
+
+          <div class="post-content">
+
+            <div class="post-meta-row">
+              <span class="post-category">
+                {{ post.data.category or "Security" }}
+              </span>
+
+              <span class="read-time">
+                ◷ {{ post.data.readTime or "5 min read" }}
+              </span>
+            </div>
+
+            <h3>{{ post.data.title }}</h3>
+
+            <p>
+              {{ post.data.description }}
+            </p>
+
+            <a class="read-more" href="{{ post.url }}">
+              Read More →
+            </a>
+
           </div>
 
-          <h3>{{ post.data.title }}</h3>
+        </article>
+        {% endfor %}
 
-          <p>{{ post.data.description }}</p>
-
-          <a class="read-more" href="{{ post.url }}">
-            Read More →
-          </a>
-
-        </div>
-
-      </article>
-      {% endfor %}
+      </div>
 
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- Tutorials Below Latest Insights -->
+  <section class="section tutorials-section">
+    <div class="section-inner">
 
-<section class="section">
-  <div class="section-inner">
+      <h2>Tutorials</h2>
 
-    <h2>Top Tutorials</h2>
-    <p class="lead">Featured VPN guides and tutorials from VPNHUB.</p>
+      <p class="section-lead">
+        Step-by-step VPN, privacy, server, streaming, and security tutorials from VPNHUB.
+      </p>
 
-    <div class="grid">
+      <div class="tutorial-grid">
 
-      {% for post in collections.posts | reverse | slice(0,6) %}
-      <article class="post-card">
+        {% for post in collections.posts | reverse | slice(0,6) %}
+        <article class="tutorial-card">
 
-        {% if post.data.image %}
-        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
-        {% endif %}
+          {% if post.data.image %}
+          <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+          {% endif %}
 
-        <div class="post-content">
+          <div class="tutorial-content">
 
-          <div class="post-top">
-            <span class="category">{{ post.data.category }}</span>
-            <span class="read-time">◷ 5 min read</span>
+            <span class="post-category">
+              {{ post.data.category or "Tutorial" }}
+            </span>
+
+            <h3>{{ post.data.title }}</h3>
+
+            <p>
+              {{ post.data.description }}
+            </p>
+
+            <a class="read-more" href="{{ post.url }}">
+              Open Tutorial →
+            </a>
+
           </div>
 
-          <h3>{{ post.data.title }}</h3>
+        </article>
+        {% endfor %}
 
-          <p>{{ post.data.description }}</p>
-
-          <a class="read-more" href="{{ post.url }}">
-            Read More →
-          </a>
-
-        </div>
-
-      </article>
-      {% endfor %}
+      </div>
 
     </div>
+  </section>
 
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+
+      <h2>Ready to Secure Your Digital Life?</h2>
+
+      <p>
+        Learn VPN security, privacy protection, server management, and safe browsing from practical VPNHUB tutorials.
+      </p>
+
+      <button class="btn primary" type="button" onclick="openSignupPopup()">
+        Start Your Secure Journey
+      </button>
+
+    </div>
+  </section>
+
+  <!-- Signup Popup -->
+  <div class="popup-overlay" id="signupPopup">
+    <div class="popup-box">
+
+      <button class="popup-close" type="button" onclick="closeSignupPopup()" aria-label="Close popup">
+        ×
+      </button>
+
+      <div class="popup-header">
+        <div class="popup-icon">🛡️</div>
+        <h2>Secure Your Privacy Now</h2>
+        <p>Join VPNHUB and protect your digital life today.</p>
+      </div>
+
+      <form class="signup-form" onsubmit="handleSignupSubmit(event)">
+
+        <label>
+          Full Name
+          <input type="text" name="fullName" required>
+        </label>
+
+        <label>
+          Phone Number
+          <input type="tel" name="phone" required>
+        </label>
+
+        <label>
+          Email Address
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          Password
+          <div class="password-wrap">
+            <input id="signupPassword" type="password" name="password" required>
+            <button type="button" onclick="togglePassword()" aria-label="Show or hide password">
+              <span id="passwordIcon">👁️</span>
+            </button>
+          </div>
+        </label>
+
+        <button class="submit-btn" type="submit">
+          Create Account
+        </button>
+
+      </form>
+
+      <p class="signin-note">
+        Already have an account?
+        <a href="/login/">Sign In</a>
+      </p>
+
+    </div>
   </div>
-</section>
 
-<section class="section features-section">
-  <div class="section-inner grid">
-
-    <div class="card">
-      <h3>🔒 VPN Security</h3>
-      <p>Learn how VPN encryption protects your privacy and secures your online activities.</p>
-    </div>
-
-    <div class="card">
-      <h3>🖼 Images & Screenshots</h3>
-      <p>Upload screenshots and tutorial images directly through the CMS editor.</p>
-    </div>
-
-    <div class="card">
-      <h3>🎥 Video Tutorials</h3>
-      <p>Embed YouTube videos and create complete visual learning guides.</p>
-    </div>
-
-    <div class="card">
-      <h3>🌎 Server Guides</h3>
-      <p>Learn V2Ray, Clash, Sing-box, VPS setup, and VPN server management.</p>
-    </div>
-
-  </div>
-</section>
+</div>
 
 <style>
 :root{
   --bg:#f8fafc;
+  --bg-soft:#ffffff;
   --text:#111827;
-  --muted:#6b7280;
+  --muted:#4b5563;
   --card:#ffffff;
-  --card-dark:#1f2937;
-  --nav:#111827;
-  --purple:#a855f7;
+  --card-2:rgba(255,255,255,.75);
+  --header:rgba(255,255,255,.82);
+  --border:rgba(17,24,39,.12);
+  --purple:#7c3aed;
+  --purple-light:#a855f7;
   --blue:#2563eb;
-  --border:rgba(255,255,255,.15);
+  --shadow:0 18px 45px rgba(15,23,42,.14);
 }
 
 body.dark{
-  --bg:#111827;
+  --bg:#0f172a;
+  --bg-soft:#111827;
   --text:#ffffff;
   --muted:#d1d5db;
   --card:#1f2937;
+  --card-2:rgba(31,41,55,.62);
+  --header:rgba(15,23,42,.88);
+  --border:rgba(255,255,255,.12);
+  --shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 body{
+  margin:0;
   background:var(--bg);
   color:var(--text);
-  transition:.3s;
+  transition:background .3s ease,color .3s ease;
 }
 
+.page-shell{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(168,85,247,.22), transparent 28%),
+    linear-gradient(135deg, rgba(248,250,252,1), rgba(245,243,255,1), rgba(239,246,255,1));
+}
+
+body.dark .page-shell{
+  background:
+    radial-gradient(circle at 16% 8%, rgba(168,85,247,.22), transparent 28%),
+    linear-gradient(135deg,#111827,#4c1d95,#1e3a8a);
+}
+
+/* Header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--header);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  min-height:78px;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--text);
+  text-decoration:none;
+  font-size:1.65rem;
+  font-weight:900;
+  letter-spacing:-.03em;
+}
+
+.brand-icon{
+  color:var(--purple-light);
+  font-size:2rem;
+  line-height:1;
+}
+
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.desktop-nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-size:1rem;
+  font-weight:800;
+  opacity:.88;
+}
+
+.desktop-nav a:hover{
+  color:var(--purple-light);
+}
+
+.mobile-menu-btn{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:24px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+}
+
+/* Theme */
 .theme-toggle{
   position:fixed;
   right:22px;
   bottom:22px;
-  z-index:9999;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.25);
-  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  z-index:1500;
+  width:54px;
+  height:54px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.24);
+  background:linear-gradient(135deg,var(--purple),var(--blue));
   color:white;
   font-size:22px;
   cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  box-shadow:0 14px 35px rgba(0,0,0,.25);
 }
 
-.hero,
-.latest-section{
-  background:
-    radial-gradient(circle at 20% 20%, rgba(168,85,247,.25), transparent 30%),
-    linear-gradient(135deg,#111827,#4c1d95,#1e3a8a);
-}
-
+/* Hero */
 .hero{
-  padding:130px 20px 110px;
+  padding:125px 20px 105px;
   text-align:center;
 }
 
 .hero-inner{
-  max-width:1000px;
+  max-width:940px;
   margin:auto;
 }
 
 .badge{
   display:inline-block;
-  padding:10px 22px;
-  border-radius:999px;
-  background:rgba(168,85,247,.18);
-  color:#d8b4fe;
-  border:1px solid rgba(216,180,254,.25);
+  padding:10px 24px;
   margin-bottom:32px;
-  font-size:16px;
+  border-radius:999px;
+  border:1px solid rgba(168,85,247,.35);
+  background:rgba(168,85,247,.14);
+  color:#c084fc;
+  font-size:15px;
 }
 
 .hero h1{
-  font-size:4.8rem;
-  font-weight:900;
-  color:#fff;
-  margin:0 0 28px;
+  margin:0 0 26px;
+  color:var(--text);
+  font-size:4.7rem;
   line-height:1.05;
+  font-weight:950;
+  letter-spacing:-.055em;
 }
 
-.highlight{
-  color:#a855f7;
+body.dark .hero h1{
+  color:white;
+}
+
+.hero h1 span{
+  color:var(--purple-light);
 }
 
 .hero p{
-  max-width:900px;
-  margin:0 auto 42px;
-  color:#e5e7eb;
-  font-size:1.55rem;
-  line-height:1.85;
+  max-width:820px;
+  margin:0 auto 40px;
+  color:var(--muted);
+  font-size:1.45rem;
+  line-height:1.8;
 }
 
-.actions{
+body.dark .hero p{
+  color:#e5e7eb;
+}
+
+.hero-actions{
   display:flex;
   justify-content:center;
   gap:18px;
@@ -237,28 +468,38 @@ body{
 }
 
 .btn{
-  background:linear-gradient(90deg,#7c3aed,#2563eb);
-  color:#fff;
-  padding:17px 34px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:54px;
+  padding:0 34px;
   border-radius:14px;
+  border:0;
   text-decoration:none;
-  font-weight:800;
-  font-size:18px;
-  box-shadow:0 14px 35px rgba(124,58,237,.35);
+  font-size:1rem;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.btn.primary{
+  color:white;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  box-shadow:0 18px 45px rgba(124,58,237,.34);
 }
 
 .btn.secondary{
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.25);
-  box-shadow:none;
+  color:var(--text);
+  background:rgba(255,255,255,.2);
+  border:1px solid var(--border);
 }
 
+body.dark .btn.secondary{
+  color:white;
+}
+
+/* Sections */
 .section{
-  padding:80px 20px;
-}
-
-.latest-section{
-  padding-top:90px;
+  padding:78px 20px;
 }
 
 .section-inner{
@@ -266,41 +507,82 @@ body{
   margin:auto;
 }
 
-.section h2{
-  text-align:center;
-  font-size:2.7rem;
+.section h2,
+.cta-section h2{
+  margin:0 0 45px;
   color:var(--text);
-  margin-bottom:45px;
-}
-
-.latest-section h2{
-  color:white;
-}
-
-.lead{
   text-align:center;
-  color:var(--muted);
-  margin-top:-30px;
-  margin-bottom:45px;
+  font-size:2.55rem;
+  line-height:1.15;
+  font-weight:950;
+  letter-spacing:-.035em;
 }
 
-.grid{
+.section-lead{
+  max-width:720px;
+  margin:-26px auto 42px;
+  color:var(--muted);
+  text-align:center;
+  font-size:1.1rem;
+  line-height:1.7;
+}
+
+/* Features */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.feature-card{
+  padding:30px;
+  border-radius:24px;
+  background:var(--card-2);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);
+  transition:.3s ease;
+}
+
+.feature-card:hover{
+  transform:translateY(-7px);
+}
+
+.feature-icon{
+  margin-bottom:18px;
+  font-size:2.3rem;
+}
+
+.feature-card h3{
+  margin:0 0 12px;
+  font-size:1.18rem;
+  color:var(--text);
+}
+
+.feature-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+/* Latest posts */
+.latest-section{
+  background:transparent;
+}
+
+.post-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:26px;
 }
 
 .post-card{
-  background:var(--card);
-  border-radius:18px;
   overflow:hidden;
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
-  transition:.3s;
-}
-
-.latest-section .post-card{
-  background:#1f2937;
-  color:white;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:.3s ease;
 }
 
 .post-card:hover{
@@ -310,6 +592,7 @@ body{
 .post-card img{
   width:100%;
   height:220px;
+  display:block;
   object-fit:cover;
 }
 
@@ -317,103 +600,397 @@ body{
   padding:28px;
 }
 
-.post-top{
+.post-meta-row{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:15px;
+  justify-content:space-between;
+  gap:12px;
   margin-bottom:18px;
 }
 
-.category{
-  background:#5b21b6;
-  color:#e9d5ff;
-  padding:7px 14px;
+.post-category{
+  display:inline-flex;
+  padding:7px 13px;
   border-radius:999px;
-  font-size:13px;
-  font-weight:700;
+  background:rgba(124,58,237,.18);
+  color:#a855f7;
+  font-size:.78rem;
+  font-weight:900;
 }
 
 .read-time{
-  color:#9ca3af;
-  font-size:14px;
+  color:var(--muted);
+  font-size:.86rem;
 }
 
 .post-card h3{
-  font-size:1.45rem;
-  line-height:1.45;
-  margin:0 0 16px;
+  margin:0 0 14px;
+  color:var(--text);
+  font-size:1.35rem;
+  line-height:1.42;
 }
 
 .post-card p{
+  margin:0 0 18px;
   color:var(--muted);
-  line-height:1.6;
-  margin-bottom:20px;
-}
-
-.latest-section .post-card p{
-  color:#d1d5db;
+  line-height:1.65;
 }
 
 .read-more{
-  color:#c084fc;
+  color:#a855f7;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* Tutorials */
+.tutorial-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+
+.tutorial-card{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  overflow:hidden;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+}
+
+.tutorial-card:hover{
+  transform:translateY(-6px);
+}
+
+.tutorial-card img{
+  width:100%;
+  height:100%;
+  min-height:220px;
+  object-fit:cover;
+}
+
+.tutorial-content{
+  padding:26px;
+}
+
+.tutorial-content h3{
+  margin:16px 0 12px;
+  color:var(--text);
+  font-size:1.25rem;
+  line-height:1.42;
+}
+
+.tutorial-content p{
+  margin:0 0 18px;
+  color:var(--muted);
+  line-height:1.62;
+}
+
+/* CTA */
+.cta-section{
+  padding:90px 20px;
+  background:linear-gradient(90deg,rgba(168,85,247,.14),rgba(37,99,235,.14));
+}
+
+.cta-inner{
+  max-width:840px;
+  margin:auto;
+  text-align:center;
+}
+
+.cta-section h2{
+  margin-bottom:22px;
+}
+
+.cta-section p{
+  max-width:760px;
+  margin:0 auto 34px;
+  color:var(--muted);
+  font-size:1.25rem;
+  line-height:1.7;
+}
+
+/* Popup */
+.popup-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  padding:18px;
+  background:rgba(0,0,0,.58);
+  align-items:center;
+  justify-content:center;
+}
+
+.popup-overlay.active{
+  display:flex;
+}
+
+.popup-box{
+  position:relative;
+  width:100%;
+  max-width:430px;
+  padding:32px;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+.popup-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text);
+  font-size:24px;
+  cursor:pointer;
+}
+
+.popup-header{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.popup-icon{
+  width:56px;
+  height:56px;
+  margin:0 auto 14px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(124,58,237,.16);
+  font-size:28px;
+}
+
+.popup-header h2{
+  margin:0 0 8px;
+  color:var(--text);
+  font-size:1.6rem;
+}
+
+.popup-header p{
+  margin:0;
+  color:var(--muted);
+}
+
+.signup-form{
+  display:grid;
+  gap:14px;
+}
+
+.signup-form label{
+  color:var(--text);
+  font-size:.92rem;
   font-weight:800;
+}
+
+.signup-form input{
+  width:100%;
+  box-sizing:border-box;
+  margin-top:7px;
+  padding:12px 13px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg-soft);
+  color:var(--text);
+  outline:none;
+}
+
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap button{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-42%);
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.submit-btn{
+  margin-top:8px;
+  min-height:48px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.signin-note{
+  margin:20px 0 0;
+  color:var(--muted);
+  text-align:center;
+}
+
+.signin-note a{
+  color:var(--purple-light);
+  font-weight:900;
   text-decoration:none;
 }
 
-.card{
-  background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 14px 35px rgba(0,0,0,.12);
-}
+/* Tablet */
+@media(max-width:1000px){
+  .feature-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.card p{
-  color:var(--muted);
-  line-height:1.6;
-}
+  .post-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-@media(max-width:900px){
-  .grid{
+  .tutorial-grid{
     grid-template-columns:1fr;
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .nav-inner{
+    min-height:86px;
+    margin:14px;
+    padding:0 22px;
+    border-radius:42px;
+    border:1px solid var(--border);
+    background:rgba(15,23,42,.78);
+  }
+
+  body:not(.dark) .nav-inner{
+    background:rgba(255,255,255,.88);
+  }
+
+  .desktop-nav{
+    display:none;
+  }
+
+  .mobile-menu-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .mobile-menu{
+    position:absolute;
+    top:116px;
+    right:24px;
+    width:min(72vw,360px);
+    padding:36px 34px;
+    border-radius:26px;
+    border:1px solid var(--border);
+    background:#172039;
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+  }
+
+  .mobile-menu.active{
+    display:block;
+  }
+
+  .mobile-menu a{
+    display:block;
+    padding:18px 0;
+    color:white;
+    text-decoration:none;
+    font-size:1.45rem;
+    font-weight:900;
+  }
+
+  .brand{
+    font-size:1.45rem;
   }
 
   .hero{
-    padding:90px 18px;
+    padding:88px 18px 70px;
+  }
+
+  .badge{
+    font-size:.82rem;
+    padding:9px 16px;
   }
 
   .hero h1{
-    font-size:3rem;
+    font-size:2.75rem;
+    line-height:1.12;
   }
 
   .hero p{
-    font-size:1.15rem;
+    font-size:1.08rem;
+    line-height:1.75;
   }
 
-  .section h2{
-    font-size:2.2rem;
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  .section{
+    padding:62px 18px;
+  }
+
+  .section h2,
+  .cta-section h2{
+    font-size:2rem;
+  }
+
+  .feature-grid,
+  .post-grid,
+  .tutorial-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tutorial-card{
+    grid-template-columns:1fr;
+  }
+
+  .tutorial-card img{
+    height:210px;
+    min-height:auto;
   }
 
   .post-card img{
     height:210px;
   }
+
+  .theme-toggle{
+    width:48px;
+    height:48px;
+    right:16px;
+    bottom:16px;
+  }
+
+  .popup-box{
+    padding:28px 22px;
+  }
 }
 
-@media(max-width:520px){
+/* Small Mobile */
+@media(max-width:420px){
   .hero h1{
-    font-size:2.45rem;
+    font-size:2.35rem;
   }
 
-  .badge{
-    font-size:13px;
+  .mobile-menu{
+    width:74vw;
+    right:18px;
   }
 
-  .btn{
-    width:100%;
-    text-align:center;
-  }
-
-  .post-content{
+  .post-content,
+  .tutorial-content{
     padding:22px;
   }
 }
@@ -421,25 +998,74 @@ body{
 
 <script>
 function applyTheme(theme){
+  var icon = document.getElementById("themeIcon");
+
   if(theme === "dark"){
     document.body.classList.add("dark");
-    document.getElementById("themeIcon").textContent = "☀️";
+    if(icon) icon.textContent = "☀️";
   }else{
     document.body.classList.remove("dark");
-    document.getElementById("themeIcon").textContent = "🌙";
+    if(icon) icon.textContent = "🌙";
   }
 }
 
 function toggleTheme(){
-  const currentTheme = localStorage.getItem("theme") || "light";
-  const nextTheme = currentTheme === "dark" ? "light" : "dark";
+  var currentTheme = localStorage.getItem("vpnhub-theme") || "dark";
+  var nextTheme = currentTheme === "dark" ? "light" : "dark";
 
-  localStorage.setItem("theme", nextTheme);
+  localStorage.setItem("vpnhub-theme", nextTheme);
   applyTheme(nextTheme);
 }
 
+function toggleMobileMenu(){
+  var menu = document.getElementById("mobileMenu");
+  var icon = document.getElementById("mobileMenuIcon");
+
+  if(!menu) return;
+
+  menu.classList.toggle("active");
+
+  if(icon){
+    icon.textContent = menu.classList.contains("active") ? "×" : "☰";
+  }
+}
+
+function openSignupPopup(){
+  var popup = document.getElementById("signupPopup");
+  if(popup) popup.classList.add("active");
+}
+
+function closeSignupPopup(){
+  var popup = document.getElementById("signupPopup");
+  if(popup) popup.classList.remove("active");
+}
+
+function togglePassword(){
+  var input = document.getElementById("signupPassword");
+  var icon = document.getElementById("passwordIcon");
+
+  if(!input) return;
+
+  if(input.type === "password"){
+    input.type = "text";
+    if(icon) icon.textContent = "🙈";
+  }else{
+    input.type = "password";
+    if(icon) icon.textContent = "👁️";
+  }
+}
+
+function handleSignupSubmit(event){
+  event.preventDefault();
+
+  alert("Account form submitted. Backend signup system connect করলে এটা real account create করবে.");
+
+  event.target.reset();
+  closeSignupPopup();
+}
+
 document.addEventListener("DOMContentLoaded", function(){
-  const savedTheme = localStorage.getItem("theme") || "light";
+  var savedTheme = localStorage.getItem("vpnhub-theme") || "dark";
   applyTheme(savedTheme);
 });
 </script>
