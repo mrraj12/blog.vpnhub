@@ -5,25 +5,23 @@ description: Step-by-step VPN tutorials, setup guides, privacy lessons, and serv
 permalink: /tutorials/
 ---
 
-{% set posts = collections.posts | reverse %}
-
 <main class="tutorials-page">
 
   <section class="tutorials-hero">
     <div class="tutorials-hero-inner">
 
       <span class="tutorials-badge">
-        VPN Setup • Privacy Guides • Server Tutorials
+        More VPN Guides • Setup Help • Troubleshooting
       </span>
 
       <h1>
-        VPN Tutorials,
-        <span>Made Simple</span>
+        More VPN Tutorials,
+        <span>Step by Step</span>
       </h1>
 
       <p>
-        Follow practical VPN guides for Android, Windows, iOS, streaming,
-        privacy protection, server setup, and secure browsing.
+        Browse all remaining VPNHUB tutorials. Homepage pinned tutorials are hidden here
+        so users can explore the rest of your VPN guides.
       </p>
 
     </div>
@@ -33,14 +31,14 @@ permalink: /tutorials/
     <div class="tutorials-inner">
 
       <div class="section-heading">
-        <h2>All Tutorials</h2>
-        <p>Browse the latest step-by-step VPNHUB guides.</p>
+        <h2>All Other Tutorials</h2>
+        <p>These tutorials are not pinned on the homepage.</p>
       </div>
 
-      {% if posts.length %}
+      {% if collections.regularTutorials.length %}
       <div class="tutorial-grid">
 
-        {% for post in posts %}
+        {% for post in collections.regularTutorials %}
         <article class="tutorial-card">
 
           {% if post.data.image %}
@@ -86,9 +84,9 @@ permalink: /tutorials/
       {% else %}
 
       <div class="empty-state">
-        <h3>No tutorials found</h3>
+        <h3>No other tutorials found</h3>
         <p>
-          Add posts with <code>tags: posts</code> in the frontmatter to show them here.
+          Add more posts without <code>featured: true</code> to show them here.
         </p>
       </div>
 
@@ -102,16 +100,15 @@ permalink: /tutorials/
 <style>
 .tutorials-page{
   min-height:100vh;
-  color:#ffffff;
+  color:var(--text-main);
   background:
     radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
     radial-gradient(circle at 88% 70%, rgba(37,99,235,.24), transparent 34%),
-    linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
+    linear-gradient(135deg,var(--site-bg) 0%,var(--site-bg-2) 46%,var(--site-bg-3) 100%);
 }
 
-/* Hero */
 .tutorials-hero{
-  padding:96px 20px 72px;
+  padding:88px 20px 66px;
   text-align:center;
 }
 
@@ -125,38 +122,37 @@ permalink: /tutorials/
   align-items:center;
   justify-content:center;
   padding:10px 24px;
-  margin-bottom:34px;
+  margin-bottom:30px;
   border-radius:999px;
-  border:1px solid rgba(216,180,254,.26);
+  border:1px solid var(--card-border);
   background:rgba(168,85,247,.16);
-  color:#d8b4fe;
+  color:var(--purple-soft);
   font-size:.95rem;
 }
 
 .tutorials-hero h1{
-  margin:0 0 24px;
-  color:#ffffff;
-  font-size:4rem;
+  margin:0 0 22px;
+  color:var(--text-main);
+  font-size:3.7rem;
   line-height:1.08;
   font-weight:950;
   letter-spacing:-.05em;
 }
 
 .tutorials-hero h1 span{
-  color:#a855f7;
+  color:var(--purple);
 }
 
 .tutorials-hero p{
   max-width:760px;
   margin:0 auto;
-  color:#e5e7eb;
-  font-size:1.22rem;
+  color:var(--text-muted);
+  font-size:1.15rem;
   line-height:1.75;
 }
 
-/* Section */
 .tutorials-section{
-  padding:56px 20px 110px;
+  padding:52px 20px 110px;
 }
 
 .tutorials-inner{
@@ -171,8 +167,8 @@ permalink: /tutorials/
 
 .section-heading h2{
   margin:0 0 12px;
-  color:#ffffff;
-  font-size:2.2rem;
+  color:var(--text-main);
+  font-size:2.1rem;
   line-height:1.15;
   font-weight:950;
   letter-spacing:-.035em;
@@ -180,11 +176,10 @@ permalink: /tutorials/
 
 .section-heading p{
   margin:0;
-  color:#d1d5db;
-  font-size:1.05rem;
+  color:var(--text-muted);
+  font-size:1.02rem;
 }
 
-/* Grid */
 .tutorial-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -194,16 +189,9 @@ permalink: /tutorials/
 .tutorial-card{
   overflow:hidden;
   border-radius:18px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(31,41,55,.90),
-      rgba(31,41,55,.76)
-    );
-  border:1px solid rgba(216,180,254,.14);
-  box-shadow:
-    0 24px 70px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.06);
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
   transition:.25s ease;
@@ -211,10 +199,6 @@ permalink: /tutorials/
 
 .tutorial-card:hover{
   transform:translateY(-7px);
-  border-color:rgba(216,180,254,.26);
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.36),
-    0 0 30px rgba(168,85,247,.12);
 }
 
 .tutorial-image-wrap{
@@ -258,8 +242,13 @@ permalink: /tutorials/
   font-weight:900;
 }
 
+body.light-mode .tutorial-category{
+  color:#7c3aed;
+  background:rgba(124,58,237,.12);
+}
+
 .tutorial-time{
-  color:#9ca3af;
+  color:var(--text-muted);
   font-size:.78rem;
   white-space:nowrap;
 }
@@ -272,78 +261,71 @@ permalink: /tutorials/
 }
 
 .tutorial-card h3 a{
-  color:#ffffff;
+  color:var(--text-main);
   text-decoration:none;
 }
 
 .tutorial-card h3 a:hover{
-  color:#d8b4fe;
+  color:var(--purple-soft);
 }
 
 .tutorial-card p{
   margin:0 0 20px;
-  color:#d1d5db;
+  color:var(--text-muted);
   font-size:.94rem;
   line-height:1.65;
 }
 
 .read-more{
-  color:#c084fc;
+  color:var(--purple-soft);
   text-decoration:none;
   font-size:.92rem;
   font-weight:900;
 }
 
-.read-more:hover{
-  color:#d8b4fe;
-}
-
-/* Empty state */
 .empty-state{
   max-width:620px;
   margin:0 auto;
   padding:34px;
   border-radius:20px;
   text-align:center;
-  background:rgba(31,41,55,.72);
-  border:1px solid rgba(216,180,254,.14);
-  box-shadow:0 24px 70px rgba(0,0,0,.28);
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
 }
 
 .empty-state h3{
   margin:0 0 12px;
-  color:#ffffff;
+  color:var(--text-main);
   font-size:1.45rem;
 }
 
 .empty-state p{
   margin:0;
-  color:#d1d5db;
+  color:var(--text-muted);
   line-height:1.7;
 }
 
 .empty-state code{
   padding:3px 7px;
   border-radius:7px;
-  background:rgba(15,23,42,.9);
+  background:rgba(15,23,42,.75);
   color:#d8b4fe;
 }
 
-/* Tablet */
 @media(max-width:1000px){
   .tutorial-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
   .tutorials-hero h1{
-    font-size:3.3rem;
+    font-size:3.1rem;
   }
 }
 
-/* Mobile */
 @media(max-width:768px){
   .tutorials-hero{
-    padding:58px 16px 46px;
+    padding:56px 16px 42px;
   }
 
   .tutorials-badge{
@@ -353,7 +335,7 @@ permalink: /tutorials/
   }
 
   .tutorials-hero h1{
-    font-size:2.35rem;
+    font-size:2.2rem;
     line-height:1.14;
   }
 
@@ -367,7 +349,7 @@ permalink: /tutorials/
   }
 
   .section-heading h2{
-    font-size:1.85rem;
+    font-size:1.8rem;
   }
 
   .tutorial-grid{
@@ -390,7 +372,7 @@ permalink: /tutorials/
 
 @media(max-width:420px){
   .tutorials-hero h1{
-    font-size:2.05rem;
+    font-size:2rem;
   }
 
   .tutorial-meta-row{
