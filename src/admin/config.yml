@@ -4,12 +4,12 @@ backend:
 
 local_backend: true
 
-media_folder: "src/images/uploads"
-public_folder: "/images/uploads"
+media_folder: "src/uploads"
+public_folder: "/uploads"
 
 site_url: "/"
 display_url: "/"
-logo_url: "/images/uploads/vpnhub-logo.png"
+logo_url: "/uploads/vpnhub-logo.png"
 
 publish_mode: editorial_workflow
 
@@ -35,15 +35,38 @@ collections:
       - "title"
       - "category"
       - "readTime"
+      - "featured"
+      - "difficulty"
+      - "platform"
 
     view_filters:
+      - label: "Pinned on Homepage"
+        field: "featured"
+        pattern: true
+
+      - label: "Regular Tutorials"
+        field: "featured"
+        pattern: false
+
       - label: "Android VPN"
         field: "category"
         pattern: "Android VPN"
 
+      - label: "iOS VPN"
+        field: "category"
+        pattern: "iOS VPN"
+
+      - label: "Windows VPN"
+        field: "category"
+        pattern: "Windows VPN"
+
       - label: "Security"
         field: "category"
         pattern: "Security"
+
+      - label: "Privacy"
+        field: "category"
+        pattern: "Privacy"
 
       - label: "Streaming"
         field: "category"
@@ -68,12 +91,12 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-        hint: "Example: How to Set Up VPN on Android"
+        hint: "Example: How to Set Up VPN in Hiddify"
 
       - label: "SEO Description"
         name: "description"
         widget: "text"
-        hint: "Short description for Google and article cards."
+        hint: "Short description for Google and tutorial cards. Keep it between 40 and 180 characters."
         pattern:
           - "^.{40,180}$"
           - "Description should be between 40 and 180 characters."
@@ -100,6 +123,7 @@ collections:
           - "Server Guide"
           - "Troubleshooting"
           - "Business"
+          - "VPN Setup"
 
       - label: "Author"
         name: "author"
@@ -110,6 +134,7 @@ collections:
         name: "readTime"
         widget: "string"
         default: "5 min read"
+        hint: "Example: 5 min read"
 
       - label: "Featured Image"
         name: "image"
@@ -117,11 +142,12 @@ collections:
         required: false
         hint: "Recommended size: 1200x700 or larger."
 
-      - label: "Featured"
+      - label: "Featured / Pin to Homepage"
         name: "featured"
         widget: "boolean"
         default: false
         required: false
+        hint: "Turn this ON to show this tutorial on homepage. Only the latest 3 featured tutorials will show on homepage."
 
       - label: "Difficulty"
         name: "difficulty"
@@ -169,10 +195,16 @@ collections:
 
   - name: "videos"
     label: "Videos"
+    label_singular: "Video"
     folder: "src/videos"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{category}}"
+
+    sortable_fields:
+      - "date"
+      - "title"
+      - "category"
 
     fields:
       - label: "Title"
@@ -199,10 +231,14 @@ collections:
           - "Streaming"
           - "Server Guide"
           - "Troubleshooting"
+          - "Android VPN"
+          - "iOS VPN"
+          - "Windows VPN"
 
       - label: "YouTube Video ID"
         name: "youtubeId"
         widget: "string"
+        hint: "Only paste the video ID. Example: dQw4w9WgXcQ"
 
       - label: "Thumbnail"
         name: "thumbnail"
