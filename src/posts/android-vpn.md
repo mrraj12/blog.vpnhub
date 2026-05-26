@@ -1,9 +1,12 @@
 ---
-title: How to Set Up VPN on Android
+title: How to Set Up VPN on Android Mobile
 description: A beginner-friendly Android VPN setup tutorial.
 date: 2026-05-25
 category: Android VPN
+author: Admin
+readTime: "5"
 image: /uploads/android-vpn.svg
+difficulty: Beginner
 ---
 
 ## Overview
