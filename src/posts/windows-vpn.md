@@ -7,6 +7,8 @@ author: "Admin "
 readTime: "5"
 image: /uploads/windows-vpn.svg
 featured: true
+layout: post.njk
+tags: posts
 difficulty: Intermediate
 platform: Windows
 ---
