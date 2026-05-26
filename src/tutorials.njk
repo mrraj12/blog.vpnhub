@@ -1,6 +1,406 @@
 ---
 layout: base.njk
-permalink: /tutorials/
 title: VPNHUB Tutorials
+description: Step-by-step VPN tutorials, setup guides, privacy lessons, and server tutorials.
+permalink: /tutorials/
 ---
-<main class="section"><div class="section-inner"><h1>VPNHUB Tutorials</h1><p class="lead">Browse all guides and blog posts.</p><div class="grid">{% for post in collections.posts | reverse %}<article class="post-card">{% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.title }}">{% endif %}<div class="meta">{{ post.data.date }} · {{ post.data.category }}</div><h3>{{ post.data.title }}</h3><p>{{ post.data.description }}</p><a class="read-more" href="{{ post.url }}">Read More →</a></article>{% endfor %}</div></div></main>
+
+{% set posts = collections.posts | reverse %}
+
+<main class="tutorials-page">
+
+  <section class="tutorials-hero">
+    <div class="tutorials-hero-inner">
+
+      <span class="tutorials-badge">
+        VPN Setup • Privacy Guides • Server Tutorials
+      </span>
+
+      <h1>
+        VPN Tutorials,
+        <span>Made Simple</span>
+      </h1>
+
+      <p>
+        Follow practical VPN guides for Android, Windows, iOS, streaming,
+        privacy protection, server setup, and secure browsing.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="tutorials-section">
+    <div class="tutorials-inner">
+
+      <div class="section-heading">
+        <h2>All Tutorials</h2>
+        <p>Browse the latest step-by-step VPNHUB guides.</p>
+      </div>
+
+      {% if posts.length %}
+      <div class="tutorial-grid">
+
+        {% for post in posts %}
+        <article class="tutorial-card">
+
+          {% if post.data.image %}
+          <a href="{{ post.url }}" class="tutorial-image-wrap">
+            <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+          </a>
+          {% endif %}
+
+          <div class="tutorial-card-body">
+
+            <div class="tutorial-meta-row">
+              <span class="tutorial-category">
+                {{ post.data.category or "VPN Tutorial" }}
+              </span>
+
+              <span class="tutorial-time">
+                ◷ {{ post.data.readTime or "5 min read" }}
+              </span>
+            </div>
+
+            <h3>
+              <a href="{{ post.url }}">
+                {{ post.data.title }}
+              </a>
+            </h3>
+
+            {% if post.data.description %}
+            <p>
+              {{ post.data.description }}
+            </p>
+            {% endif %}
+
+            <a href="{{ post.url }}" class="read-more">
+              Open Tutorial →
+            </a>
+
+          </div>
+
+        </article>
+        {% endfor %}
+
+      </div>
+      {% else %}
+
+      <div class="empty-state">
+        <h3>No tutorials found</h3>
+        <p>
+          Add posts with <code>tags: posts</code> in the frontmatter to show them here.
+        </p>
+      </div>
+
+      {% endif %}
+
+    </div>
+  </section>
+
+</main>
+
+<style>
+.tutorials-page{
+  min-height:100vh;
+  color:#ffffff;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
+    radial-gradient(circle at 88% 70%, rgba(37,99,235,.24), transparent 34%),
+    linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
+}
+
+/* Hero */
+.tutorials-hero{
+  padding:96px 20px 72px;
+  text-align:center;
+}
+
+.tutorials-hero-inner{
+  max-width:920px;
+  margin:0 auto;
+}
+
+.tutorials-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 24px;
+  margin-bottom:34px;
+  border-radius:999px;
+  border:1px solid rgba(216,180,254,.26);
+  background:rgba(168,85,247,.16);
+  color:#d8b4fe;
+  font-size:.95rem;
+}
+
+.tutorials-hero h1{
+  margin:0 0 24px;
+  color:#ffffff;
+  font-size:4rem;
+  line-height:1.08;
+  font-weight:950;
+  letter-spacing:-.05em;
+}
+
+.tutorials-hero h1 span{
+  color:#a855f7;
+}
+
+.tutorials-hero p{
+  max-width:760px;
+  margin:0 auto;
+  color:#e5e7eb;
+  font-size:1.22rem;
+  line-height:1.75;
+}
+
+/* Section */
+.tutorials-section{
+  padding:56px 20px 110px;
+}
+
+.tutorials-inner{
+  max-width:1160px;
+  margin:0 auto;
+}
+
+.section-heading{
+  margin-bottom:38px;
+  text-align:center;
+}
+
+.section-heading h2{
+  margin:0 0 12px;
+  color:#ffffff;
+  font-size:2.2rem;
+  line-height:1.15;
+  font-weight:950;
+  letter-spacing:-.035em;
+}
+
+.section-heading p{
+  margin:0;
+  color:#d1d5db;
+  font-size:1.05rem;
+}
+
+/* Grid */
+.tutorial-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+.tutorial-card{
+  overflow:hidden;
+  border-radius:18px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(31,41,55,.90),
+      rgba(31,41,55,.76)
+    );
+  border:1px solid rgba(216,180,254,.14);
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  transition:.25s ease;
+}
+
+.tutorial-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(216,180,254,.26);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.36),
+    0 0 30px rgba(168,85,247,.12);
+}
+
+.tutorial-image-wrap{
+  display:block;
+  overflow:hidden;
+}
+
+.tutorial-card img{
+  display:block;
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  transition:.35s ease;
+}
+
+.tutorial-card:hover img{
+  transform:scale(1.04);
+}
+
+.tutorial-card-body{
+  padding:24px;
+}
+
+.tutorial-meta-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.tutorial-category{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(124,58,237,.42);
+  color:#d8b4fe;
+  font-size:.74rem;
+  font-weight:900;
+}
+
+.tutorial-time{
+  color:#9ca3af;
+  font-size:.78rem;
+  white-space:nowrap;
+}
+
+.tutorial-card h3{
+  margin:0 0 14px;
+  font-size:1.25rem;
+  line-height:1.35;
+  font-weight:950;
+}
+
+.tutorial-card h3 a{
+  color:#ffffff;
+  text-decoration:none;
+}
+
+.tutorial-card h3 a:hover{
+  color:#d8b4fe;
+}
+
+.tutorial-card p{
+  margin:0 0 20px;
+  color:#d1d5db;
+  font-size:.94rem;
+  line-height:1.65;
+}
+
+.read-more{
+  color:#c084fc;
+  text-decoration:none;
+  font-size:.92rem;
+  font-weight:900;
+}
+
+.read-more:hover{
+  color:#d8b4fe;
+}
+
+/* Empty state */
+.empty-state{
+  max-width:620px;
+  margin:0 auto;
+  padding:34px;
+  border-radius:20px;
+  text-align:center;
+  background:rgba(31,41,55,.72);
+  border:1px solid rgba(216,180,254,.14);
+  box-shadow:0 24px 70px rgba(0,0,0,.28);
+}
+
+.empty-state h3{
+  margin:0 0 12px;
+  color:#ffffff;
+  font-size:1.45rem;
+}
+
+.empty-state p{
+  margin:0;
+  color:#d1d5db;
+  line-height:1.7;
+}
+
+.empty-state code{
+  padding:3px 7px;
+  border-radius:7px;
+  background:rgba(15,23,42,.9);
+  color:#d8b4fe;
+}
+
+/* Tablet */
+@media(max-width:1000px){
+  .tutorial-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tutorials-hero h1{
+    font-size:3.3rem;
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .tutorials-hero{
+    padding:58px 16px 46px;
+  }
+
+  .tutorials-badge{
+    margin-bottom:24px;
+    padding:9px 16px;
+    font-size:.78rem;
+  }
+
+  .tutorials-hero h1{
+    font-size:2.35rem;
+    line-height:1.14;
+  }
+
+  .tutorials-hero p{
+    font-size:1rem;
+    line-height:1.7;
+  }
+
+  .tutorials-section{
+    padding:42px 16px 76px;
+  }
+
+  .section-heading h2{
+    font-size:1.85rem;
+  }
+
+  .tutorial-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .tutorial-card{
+    border-radius:16px;
+  }
+
+  .tutorial-card img{
+    height:210px;
+  }
+
+  .tutorial-card-body{
+    padding:22px;
+  }
+}
+
+@media(max-width:420px){
+  .tutorials-hero h1{
+    font-size:2.05rem;
+  }
+
+  .tutorial-meta-row{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .tutorial-card img{
+    height:190px;
+  }
+}
+</style>
