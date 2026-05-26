@@ -27,18 +27,18 @@ module.exports = function(eleventyConfig) {
     return post.data.featured === true || post.data.featured === "true";
   }
 
-  function getAllPosts(collectionApi) {
+  function getAllTutorialPosts(collectionApi) {
     return sortNewestFirst(collectionApi.getFilteredByTag("posts"));
   }
 
-  function getHomepagePosts(collectionApi) {
-    const allPosts = getAllPosts(collectionApi);
+  function getHomepageTutorialPosts(collectionApi) {
+    const allPosts = getAllTutorialPosts(collectionApi);
 
     const featuredPosts = allPosts.filter(function(post) {
       return isFeatured(post);
     });
 
-    const nonFeaturedPosts = allPosts.filter(function(post) {
+    const normalPosts = allPosts.filter(function(post) {
       return !isFeatured(post);
     });
 
@@ -50,7 +50,7 @@ module.exports = function(eleventyConfig) {
       }
     });
 
-    nonFeaturedPosts.forEach(function(post) {
+    normalPosts.forEach(function(post) {
       if (homepagePosts.length < 3) {
         homepagePosts.push(post);
       }
@@ -60,25 +60,20 @@ module.exports = function(eleventyConfig) {
   }
 
   eleventyConfig.addCollection("allTutorials", function(collectionApi) {
-    return getAllPosts(collectionApi);
+    return getAllTutorialPosts(collectionApi);
   });
 
-  // Homepage system:
-  // featured true first, then auto-fill with latest posts until 3 posts
   eleventyConfig.addCollection("homepageTutorials", function(collectionApi) {
-    return getHomepagePosts(collectionApi);
+    return getHomepageTutorialPosts(collectionApi);
   });
 
-  // Old name support, in case your index.njk still uses pinnedTutorials
   eleventyConfig.addCollection("pinnedTutorials", function(collectionApi) {
-    return getHomepagePosts(collectionApi);
+    return getHomepageTutorialPosts(collectionApi);
   });
 
-  // Tutorials page:
-  // show all posts except the 3 posts already shown on homepage
   eleventyConfig.addCollection("regularTutorials", function(collectionApi) {
-    const allPosts = getAllPosts(collectionApi);
-    const homepagePosts = getHomepagePosts(collectionApi);
+    const allPosts = getAllTutorialPosts(collectionApi);
+    const homepagePosts = getHomepageTutorialPosts(collectionApi);
 
     const homepageUrls = homepagePosts.map(function(post) {
       return post.url;
