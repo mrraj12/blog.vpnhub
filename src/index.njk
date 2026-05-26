@@ -4,6 +4,10 @@ title: VPNHUB - Tutorials & VPN Guides
 description: VPN tutorials, privacy guides, server tips, and video lessons.
 ---
 
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <span id="themeIcon">🌙</span>
+</button>
+
 <header class="hero">
   <div class="hero-inner">
 
@@ -30,17 +34,12 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   </div>
 </header>
 
-<!-- TOP 3 TUTORIALS -->
-
-<section class="section">
+<section class="section latest-section">
   <div class="section-inner">
 
-    <h2>Top Tutorials</h2>
-    <p class="lead">
-      Featured VPN guides and tutorials from VPNHUB.
-    </p>
+    <h2>Latest Insights</h2>
 
-    <div class="grid top-tutorials">
+    <div class="grid">
 
       {% for post in collections.posts | reverse | slice(0,3) %}
       <article class="post-card">
@@ -49,17 +48,22 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
         <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
         {% endif %}
 
-        <div class="meta">
-          {{ post.data.date }} · {{ post.data.category }}
+        <div class="post-content">
+
+          <div class="post-top">
+            <span class="category">{{ post.data.category }}</span>
+            <span class="read-time">◷ 5 min read</span>
+          </div>
+
+          <h3>{{ post.data.title }}</h3>
+
+          <p>{{ post.data.description }}</p>
+
+          <a class="read-more" href="{{ post.url }}">
+            Read More →
+          </a>
+
         </div>
-
-        <h3>{{ post.data.title }}</h3>
-
-        <p>{{ post.data.description }}</p>
-
-        <a class="read-more" href="{{ post.url }}">
-          Read More →
-        </a>
 
       </article>
       {% endfor %}
@@ -69,16 +73,11 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   </div>
 </section>
 
-<!-- LATEST TUTORIALS -->
-
 <section class="section">
   <div class="section-inner">
 
-    <h2>Latest Tutorials</h2>
-
-    <p class="lead">
-      Fresh guides and blog posts from VPNHUB.
-    </p>
+    <h2>Top Tutorials</h2>
+    <p class="lead">Featured VPN guides and tutorials from VPNHUB.</p>
 
     <div class="grid">
 
@@ -89,17 +88,22 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
         <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
         {% endif %}
 
-        <div class="meta">
-          {{ post.data.date }} · {{ post.data.category }}
+        <div class="post-content">
+
+          <div class="post-top">
+            <span class="category">{{ post.data.category }}</span>
+            <span class="read-time">◷ 5 min read</span>
+          </div>
+
+          <h3>{{ post.data.title }}</h3>
+
+          <p>{{ post.data.description }}</p>
+
+          <a class="read-more" href="{{ post.url }}">
+            Read More →
+          </a>
+
         </div>
-
-        <h3>{{ post.data.title }}</h3>
-
-        <p>{{ post.data.description }}</p>
-
-        <a class="read-more" href="{{ post.url }}">
-          Read More →
-        </a>
 
       </article>
       {% endfor %}
@@ -109,51 +113,83 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   </div>
 </section>
 
-<!-- FEATURES -->
-
-<section class="section">
+<section class="section features-section">
   <div class="section-inner grid">
 
     <div class="card">
       <h3>🔒 VPN Security</h3>
-      <p>
-        Learn how VPN encryption protects your privacy and secures your online activities.
-      </p>
+      <p>Learn how VPN encryption protects your privacy and secures your online activities.</p>
     </div>
 
     <div class="card">
       <h3>🖼 Images & Screenshots</h3>
-      <p>
-        Upload screenshots and tutorial images directly through the CMS editor.
-      </p>
+      <p>Upload screenshots and tutorial images directly through the CMS editor.</p>
     </div>
 
     <div class="card">
       <h3>🎥 Video Tutorials</h3>
-      <p>
-        Embed YouTube videos and create complete visual learning guides.
-      </p>
+      <p>Embed YouTube videos and create complete visual learning guides.</p>
     </div>
 
     <div class="card">
       <h3>🌎 Server Guides</h3>
-      <p>
-        Learn V2Ray, Clash, Sing-box, VPS setup, and VPN server management.
-      </p>
+      <p>Learn V2Ray, Clash, Sing-box, VPS setup, and VPN server management.</p>
     </div>
 
   </div>
 </section>
 
 <style>
+:root{
+  --bg:#f8fafc;
+  --text:#111827;
+  --muted:#6b7280;
+  --card:#ffffff;
+  --card-dark:#1f2937;
+  --nav:#111827;
+  --purple:#a855f7;
+  --blue:#2563eb;
+  --border:rgba(255,255,255,.15);
+}
+
+body.dark{
+  --bg:#111827;
+  --text:#ffffff;
+  --muted:#d1d5db;
+  --card:#1f2937;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+.theme-toggle{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:9999;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.hero,
+.latest-section{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,.25), transparent 30%),
+    linear-gradient(135deg,#111827,#4c1d95,#1e3a8a);
+}
+
 .hero{
-  background:linear-gradient(
-    135deg,
-    #111827,
-    #4c1d95,
-    #1e3a8a
-  );
-  padding:100px 20px;
+  padding:130px 20px 110px;
   text-align:center;
 }
 
@@ -164,21 +200,21 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
 
 .badge{
   display:inline-block;
-  padding:8px 18px;
+  padding:10px 22px;
   border-radius:999px;
-  background:rgba(168,85,247,.15);
-  color:#c084fc;
-  border:1px solid rgba(168,85,247,.3);
-  margin-bottom:20px;
-  font-size:14px;
+  background:rgba(168,85,247,.18);
+  color:#d8b4fe;
+  border:1px solid rgba(216,180,254,.25);
+  margin-bottom:32px;
+  font-size:16px;
 }
 
 .hero h1{
-  font-size:4rem;
-  font-weight:800;
+  font-size:4.8rem;
+  font-weight:900;
   color:#fff;
-  margin-bottom:20px;
-  line-height:1.2;
+  margin:0 0 28px;
+  line-height:1.05;
 }
 
 .highlight{
@@ -186,40 +222,43 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
 }
 
 .hero p{
-  max-width:750px;
-  margin:0 auto 30px;
-  color:#d1d5db;
-  font-size:1.3rem;
-  line-height:1.8;
+  max-width:900px;
+  margin:0 auto 42px;
+  color:#e5e7eb;
+  font-size:1.55rem;
+  line-height:1.85;
 }
 
 .actions{
   display:flex;
   justify-content:center;
-  gap:15px;
+  gap:18px;
   flex-wrap:wrap;
 }
 
 .btn{
-  background:linear-gradient(
-    90deg,
-    #7c3aed,
-    #2563eb
-  );
+  background:linear-gradient(90deg,#7c3aed,#2563eb);
   color:#fff;
-  padding:14px 28px;
-  border-radius:12px;
+  padding:17px 34px;
+  border-radius:14px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:800;
+  font-size:18px;
+  box-shadow:0 14px 35px rgba(124,58,237,.35);
 }
 
 .btn.secondary{
-  background:#ffffff20;
-  border:1px solid #ffffff30;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:none;
 }
 
 .section{
-  padding:70px 20px;
+  padding:80px 20px;
+}
+
+.latest-section{
+  padding-top:90px;
 }
 
 .section-inner{
@@ -229,33 +268,43 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
 
 .section h2{
   text-align:center;
-  font-size:2.5rem;
-  margin-bottom:10px;
+  font-size:2.7rem;
+  color:var(--text);
+  margin-bottom:45px;
+}
+
+.latest-section h2{
+  color:white;
 }
 
 .lead{
   text-align:center;
-  color:#6b7280;
-  margin-bottom:40px;
+  color:var(--muted);
+  margin-top:-30px;
+  margin-bottom:45px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
 }
 
 .post-card{
-  background:#fff;
+  background:var(--card);
   border-radius:18px;
   overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
   transition:.3s;
 }
 
+.latest-section .post-card{
+  background:#1f2937;
+  color:white;
+}
+
 .post-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-8px);
 }
 
 .post-card img{
@@ -264,58 +313,133 @@ description: VPN tutorials, privacy guides, server tips, and video lessons.
   object-fit:cover;
 }
 
+.post-content{
+  padding:28px;
+}
+
+.post-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:18px;
+}
+
+.category{
+  background:#5b21b6;
+  color:#e9d5ff;
+  padding:7px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.read-time{
+  color:#9ca3af;
+  font-size:14px;
+}
+
 .post-card h3{
-  padding:0 20px;
-  font-size:1.3rem;
+  font-size:1.45rem;
+  line-height:1.45;
+  margin:0 0 16px;
 }
 
 .post-card p{
-  padding:0 20px;
-  color:#6b7280;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:20px;
 }
 
-.meta{
-  padding:15px 20px 0;
-  color:#9ca3af;
-  font-size:13px;
+.latest-section .post-card p{
+  color:#d1d5db;
 }
 
 .read-more{
-  display:inline-block;
-  padding:20px;
+  color:#c084fc;
+  font-weight:800;
   text-decoration:none;
-  color:#7c3aed;
-  font-weight:600;
-}
-
-.top-tutorials .post-card{
-  border:2px solid #a855f7;
 }
 
 .card{
-  background:#fff;
-  padding:25px;
+  background:var(--card);
+  padding:30px;
   border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  box-shadow:0 14px 35px rgba(0,0,0,.12);
 }
 
-.card h3{
-  margin-bottom:10px;
+.card p{
+  color:var(--muted);
+  line-height:1.6;
 }
 
-@media(max-width:768px){
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.hero h1{
-  font-size:2.5rem;
+  .hero{
+    padding:90px 18px;
+  }
+
+  .hero h1{
+    font-size:3rem;
+  }
+
+  .hero p{
+    font-size:1.15rem;
+  }
+
+  .section h2{
+    font-size:2.2rem;
+  }
+
+  .post-card img{
+    height:210px;
+  }
 }
 
-.hero p{
-  font-size:1.1rem;
-}
+@media(max-width:520px){
+  .hero h1{
+    font-size:2.45rem;
+  }
 
-.section h2{
-  font-size:2rem;
-}
+  .badge{
+    font-size:13px;
+  }
 
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .post-content{
+    padding:22px;
+  }
 }
 </style>
+
+<script>
+function applyTheme(theme){
+  if(theme === "dark"){
+    document.body.classList.add("dark");
+    document.getElementById("themeIcon").textContent = "☀️";
+  }else{
+    document.body.classList.remove("dark");
+    document.getElementById("themeIcon").textContent = "🌙";
+  }
+}
+
+function toggleTheme(){
+  const currentTheme = localStorage.getItem("theme") || "light";
+  const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+  localStorage.setItem("theme", nextTheme);
+  applyTheme(nextTheme);
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+});
+</script>
