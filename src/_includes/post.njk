@@ -80,7 +80,7 @@ layout: base.njk
 <style>
 .post-page{
   min-height:100vh;
-  padding:130px 20px 90px;
+  padding:130px 20px 95px;
   color:var(--text-main);
   background:
     radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
@@ -93,17 +93,31 @@ layout: base.njk
   margin:0 auto;
   overflow:hidden;
   border-radius:22px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  box-shadow:var(--shadow);
+  background:rgba(31,41,55,.88);
+  border:1px solid rgba(216,180,254,.18);
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.06);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
+}
+
+body.light-mode .post-shell{
+  background:rgba(255,255,255,.88);
+  border-color:rgba(124,58,237,.18);
+  box-shadow:
+    0 24px 70px rgba(15,23,42,.16),
+    inset 0 1px 0 rgba(255,255,255,.70);
 }
 
 .post-cover{
   width:100%;
   overflow:hidden;
   background:rgba(15,23,42,.45);
+}
+
+body.light-mode .post-cover{
+  background:rgba(255,255,255,.35);
 }
 
 .post-cover img{
@@ -219,6 +233,9 @@ body.light-mode .post-info-row span{
 }
 
 .post-body{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
   color:var(--text-main);
   font-size:1rem;
   line-height:1.8;
@@ -284,6 +301,23 @@ body.light-mode .post-info-row span{
   box-shadow:0 18px 45px rgba(0,0,0,.20);
 }
 
+.post-body iframe{
+  display:block;
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:16/9;
+  margin:28px 0;
+  border:0;
+  border-radius:16px;
+  background:#0f172a;
+  box-shadow:0 18px 45px rgba(0,0,0,.22);
+}
+
+.post-body iframe[src*="youtube.com"],
+.post-body iframe[src*="youtu.be"]{
+  min-height:360px;
+}
+
 .post-body blockquote{
   margin:28px 0;
   padding:20px 22px;
@@ -322,14 +356,6 @@ body.light-mode .post-body code{
 
 body.light-mode .post-body pre{
   background:rgba(15,23,42,.92);
-}
-
-body.light-mode .post-shell{
-  background:rgba(255,255,255,.84);
-}
-
-body.light-mode .post-cover{
-  background:rgba(255,255,255,.35);
 }
 
 @media(max-width:768px){
@@ -378,6 +404,11 @@ body.light-mode .post-cover{
   .post-body h3{
     font-size:1.2rem;
   }
+
+  .post-body iframe[src*="youtube.com"],
+  .post-body iframe[src*="youtu.be"]{
+    min-height:220px;
+  }
 }
 
 @media(max-width:420px){
@@ -395,6 +426,11 @@ body.light-mode .post-cover{
 
   .post-category{
     font-size:.72rem;
+  }
+
+  .post-body iframe[src*="youtube.com"],
+  .post-body iframe[src*="youtu.be"]{
+    min-height:190px;
   }
 }
 </style>
