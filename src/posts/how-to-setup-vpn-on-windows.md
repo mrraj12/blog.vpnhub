@@ -1,13 +1,14 @@
 ---
 layout: post.njk
+tags: posts
 title: How to Set Up VPN on Windows
-description: Follow this beginner-friendly guide to install and connect a VPN on Windows for safer browsing and privacy.
+description: Follow this beginner-friendly guide to install and connect a VPN on
+  Windows for safer browsing and privacy.
 date: 2026-05-25
 category: Windows VPN
 author: VPNHUB Team
 readTime: 6 min read
-image: /uploads/windows-vpn-setup.jpg
-tags: posts
+image: /uploads/windows-vpn.svg
 featured: true
 difficulty: Beginner
 platform: Windows
