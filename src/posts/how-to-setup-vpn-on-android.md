@@ -1,14 +1,15 @@
 ---
 layout: post.njk
+tags: posts
 title: How to Set Up VPN on Android
-description: Learn how to install, configure, and connect a VPN on Android with simple step-by-step instructions.
+description: Learn how to install, configure, and connect a VPN on Android with
+  simple step-by-step instructions.
 date: 2026-05-26
 category: Android VPN
 author: VPNHUB Team
 readTime: 5 min read
 image: /uploads/android-vpn-setup.jpg
-tags: posts
-featured: true
+featured: false
 difficulty: Beginner
 platform: Android
 ---
