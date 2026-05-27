@@ -11,17 +11,16 @@ permalink: /tutorials/
     <div class="tutorials-hero-inner">
 
       <span class="tutorials-badge">
-        More VPN Guides • Setup Help • Troubleshooting
+        {{ siteContent.tutorialsPage.badge }}
       </span>
 
       <h1>
-        More VPN Tutorials,
-        <span>Step by Step</span>
+        {{ siteContent.tutorialsPage.titleBefore }}
+        <span>{{ siteContent.tutorialsPage.titleHighlight }}</span>
       </h1>
 
       <p>
-        Browse all remaining VPNHUB tutorials. Homepage tutorials are hidden here
-        so users can explore the rest of your VPN guides.
+        {{ siteContent.tutorialsPage.description }}
       </p>
 
     </div>
@@ -31,8 +30,8 @@ permalink: /tutorials/
     <div class="tutorials-inner">
 
       <div class="section-heading">
-        <h2>All Other Tutorials</h2>
-        <p>These tutorials are not currently shown on the homepage.</p>
+        <h2>{{ siteContent.tutorialsPage.sectionTitle }}</h2>
+        <p>{{ siteContent.tutorialsPage.sectionDescription }}</p>
       </div>
 
       {% if collections.regularTutorials.length %}
