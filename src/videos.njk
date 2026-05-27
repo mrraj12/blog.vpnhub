@@ -11,17 +11,16 @@ permalink: /videos/
     <div class="videos-hero-inner">
 
       <span class="videos-badge">
-        VPN Videos • Setup Walkthroughs • Security Lessons
+        {{ siteContent.videosPage.badge }}
       </span>
 
       <h1>
-        VPN Video Guides,
-        <span>Step by Step</span>
+        {{ siteContent.videosPage.titleBefore }}
+        <span>{{ siteContent.videosPage.titleHighlight }}</span>
       </h1>
 
       <p>
-        Watch VPNHUB video tutorials for VPN setup, Hiddify setup, Android VPN,
-        Windows VPN, secure browsing, privacy protection, and server management.
+        {{ siteContent.videosPage.description }}
       </p>
 
     </div>
@@ -31,8 +30,8 @@ permalink: /videos/
     <div class="videos-inner">
 
       <div class="section-heading">
-        <h2>Latest Videos</h2>
-        <p>Watch practical VPN tutorials and setup walkthroughs.</p>
+        <h2>{{ siteContent.videosPage.sectionTitle }}</h2>
+        <p>{{ siteContent.videosPage.sectionDescription }}</p>
       </div>
 
       {% if collections.allVideos.length %}
