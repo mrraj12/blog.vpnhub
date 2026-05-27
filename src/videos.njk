@@ -20,8 +20,8 @@ permalink: /videos/
       </h1>
 
       <p>
-        Watch practical VPNHUB video tutorials for VPN setup, Android VPN,
-        privacy protection, streaming access, secure browsing, and server management.
+        Watch VPNHUB video tutorials for VPN setup, Hiddify setup, Android VPN,
+        Windows VPN, secure browsing, privacy protection, and server management.
       </p>
 
     </div>
@@ -32,63 +32,81 @@ permalink: /videos/
 
       <div class="section-heading">
         <h2>Latest Videos</h2>
-        <p>Add your YouTube videos or tutorial embeds here.</p>
+        <p>Watch practical VPN tutorials and setup walkthroughs.</p>
       </div>
 
+      {% if collections.allVideos.length %}
       <div class="video-grid">
 
+        {% for video in collections.allVideos %}
         <article class="video-card">
+
           <div class="video-frame">
+
+            {% if video.data.youtubeId %}
+            <iframe
+              src="https://www.youtube.com/embed/{{ video.data.youtubeId }}"
+              title="{{ video.data.title }}"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+            {% elif video.data.thumbnail %}
+            <img src="{{ video.data.thumbnail }}" alt="{{ video.data.title }}">
+            {% else %}
             <div class="video-placeholder">
               <span>▶</span>
-              <p>YouTube Video Embed</p>
+              <p>Video Coming Soon</p>
             </div>
+            {% endif %}
+
           </div>
 
           <div class="video-body">
-            <span class="video-category">VPN Setup</span>
-            <h3>How to Set Up a VPN on Android</h3>
-            <p>
-              A simple walkthrough showing how to install, configure, and connect a VPN on Android.
-            </p>
-          </div>
-        </article>
 
-        <article class="video-card">
-          <div class="video-frame">
-            <div class="video-placeholder">
-              <span>▶</span>
-              <p>YouTube Video Embed</p>
+            <div class="video-meta-row">
+              <span class="video-category">
+                {{ video.data.category or "VPN Video" }}
+              </span>
+
+              {% if video.data.date %}
+              <span class="video-date">
+                {{ video.data.date | readableDate }}
+              </span>
+              {% endif %}
             </div>
+
+            <h3>{{ video.data.title }}</h3>
+
+            {% if video.data.description %}
+            <p>{{ video.data.description }}</p>
+            {% endif %}
+
+            {% if video.data.youtubeId %}
+            <a
+              class="watch-link"
+              href="https://www.youtube.com/watch?v={{ video.data.youtubeId }}"
+              target="_blank"
+              rel="noopener">
+              Watch on YouTube →
+            </a>
+            {% endif %}
+
           </div>
 
-          <div class="video-body">
-            <span class="video-category">Privacy</span>
-            <h3>VPN Privacy Settings Explained</h3>
-            <p>
-              Learn important VPN privacy settings, DNS protection, kill switch, and safe browsing habits.
-            </p>
-          </div>
         </article>
-
-        <article class="video-card">
-          <div class="video-frame">
-            <div class="video-placeholder">
-              <span>▶</span>
-              <p>YouTube Video Embed</p>
-            </div>
-          </div>
-
-          <div class="video-body">
-            <span class="video-category">Server Guide</span>
-            <h3>Choosing the Best VPN Server</h3>
-            <p>
-              Understand how server location affects speed, privacy, streaming, and browsing performance.
-            </p>
-          </div>
-        </article>
+        {% endfor %}
 
       </div>
+      {% else %}
+
+      <div class="empty-state">
+        <h3>No videos found</h3>
+        <p>
+          Add video files inside <code>src/videos/</code> or create videos from the admin panel.
+        </p>
+      </div>
+
+      {% endif %}
 
     </div>
   </section>
@@ -98,15 +116,15 @@ permalink: /videos/
 <style>
 .videos-page{
   min-height:100vh;
-  color:#ffffff;
+  color:var(--text-main);
   background:
     radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
     radial-gradient(circle at 88% 70%, rgba(37,99,235,.24), transparent 34%),
-    linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
+    linear-gradient(135deg,var(--site-bg) 0%,var(--site-bg-2) 46%,var(--site-bg-3) 100%);
 }
 
 .videos-hero{
-  padding:96px 20px 72px;
+  padding:88px 20px 66px;
   text-align:center;
 }
 
@@ -120,37 +138,37 @@ permalink: /videos/
   align-items:center;
   justify-content:center;
   padding:10px 24px;
-  margin-bottom:34px;
+  margin-bottom:30px;
   border-radius:999px;
-  border:1px solid rgba(216,180,254,.26);
+  border:1px solid var(--card-border);
   background:rgba(168,85,247,.16);
-  color:#d8b4fe;
+  color:var(--purple-soft);
   font-size:.95rem;
 }
 
 .videos-hero h1{
-  margin:0 0 24px;
-  color:#ffffff;
-  font-size:4rem;
+  margin:0 0 22px;
+  color:var(--text-main);
+  font-size:3.7rem;
   line-height:1.08;
   font-weight:950;
   letter-spacing:-.05em;
 }
 
 .videos-hero h1 span{
-  color:#a855f7;
+  color:var(--purple);
 }
 
 .videos-hero p{
   max-width:760px;
   margin:0 auto;
-  color:#e5e7eb;
-  font-size:1.22rem;
+  color:var(--text-muted);
+  font-size:1.15rem;
   line-height:1.75;
 }
 
 .videos-section{
-  padding:56px 20px 110px;
+  padding:52px 20px 110px;
 }
 
 .videos-inner{
@@ -165,8 +183,8 @@ permalink: /videos/
 
 .section-heading h2{
   margin:0 0 12px;
-  color:#ffffff;
-  font-size:2.2rem;
+  color:var(--text-main);
+  font-size:2.1rem;
   line-height:1.15;
   font-weight:950;
   letter-spacing:-.035em;
@@ -174,8 +192,8 @@ permalink: /videos/
 
 .section-heading p{
   margin:0;
-  color:#d1d5db;
-  font-size:1.05rem;
+  color:var(--text-muted);
+  font-size:1.02rem;
 }
 
 .video-grid{
@@ -187,16 +205,9 @@ permalink: /videos/
 .video-card{
   overflow:hidden;
   border-radius:18px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(31,41,55,.90),
-      rgba(31,41,55,.76)
-    );
-  border:1px solid rgba(216,180,254,.14);
-  box-shadow:
-    0 24px 70px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.06);
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
   transition:.25s ease;
@@ -204,17 +215,24 @@ permalink: /videos/
 
 .video-card:hover{
   transform:translateY(-7px);
-  border-color:rgba(216,180,254,.26);
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.36),
-    0 0 30px rgba(168,85,247,.12);
 }
 
 .video-frame{
+  width:100%;
   aspect-ratio:16/9;
+  overflow:hidden;
   background:
-    linear-gradient(135deg,rgba(124,58,237,.45),rgba(37,99,235,.36)),
+    linear-gradient(135deg,rgba(124,58,237,.42),rgba(37,99,235,.32)),
     rgba(15,23,42,.9);
+}
+
+.video-frame iframe,
+.video-frame img{
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  object-fit:cover;
 }
 
 .video-placeholder{
@@ -250,53 +268,102 @@ permalink: /videos/
   padding:24px;
 }
 
+.video-meta-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:18px;
+}
+
 .video-category{
   display:inline-flex;
+  align-items:center;
+  justify-content:center;
   padding:6px 12px;
   border-radius:999px;
   background:rgba(124,58,237,.42);
   color:#d8b4fe;
   font-size:.74rem;
   font-weight:900;
-  margin-bottom:16px;
+}
+
+body.light-mode .video-category{
+  color:#7c3aed;
+  background:rgba(124,58,237,.12);
+}
+
+.video-date{
+  color:var(--text-muted);
+  font-size:.78rem;
+  white-space:nowrap;
 }
 
 .video-body h3{
   margin:0 0 14px;
-  color:#ffffff;
+  color:var(--text-main);
   font-size:1.25rem;
   line-height:1.35;
   font-weight:950;
 }
 
 .video-body p{
-  margin:0;
-  color:#d1d5db;
+  margin:0 0 20px;
+  color:var(--text-muted);
   font-size:.94rem;
   line-height:1.65;
 }
 
-.video-frame iframe{
-  width:100%;
-  height:100%;
-  border:0;
+.watch-link{
+  color:var(--purple-soft);
+  text-decoration:none;
+  font-size:.92rem;
+  font-weight:900;
 }
 
-/* Tablet */
+.empty-state{
+  max-width:620px;
+  margin:0 auto;
+  padding:34px;
+  border-radius:20px;
+  text-align:center;
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
+}
+
+.empty-state h3{
+  margin:0 0 12px;
+  color:var(--text-main);
+  font-size:1.45rem;
+}
+
+.empty-state p{
+  margin:0;
+  color:var(--text-muted);
+  line-height:1.7;
+}
+
+.empty-state code{
+  padding:3px 7px;
+  border-radius:7px;
+  background:rgba(15,23,42,.75);
+  color:#d8b4fe;
+}
+
 @media(max-width:1000px){
   .video-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
   .videos-hero h1{
-    font-size:3.3rem;
+    font-size:3.1rem;
   }
 }
 
-/* Mobile */
 @media(max-width:768px){
   .videos-hero{
-    padding:58px 16px 46px;
+    padding:56px 16px 42px;
   }
 
   .videos-badge{
@@ -306,7 +373,7 @@ permalink: /videos/
   }
 
   .videos-hero h1{
-    font-size:2.35rem;
+    font-size:2.2rem;
     line-height:1.14;
   }
 
@@ -320,7 +387,7 @@ permalink: /videos/
   }
 
   .section-heading h2{
-    font-size:1.85rem;
+    font-size:1.8rem;
   }
 
   .video-grid{
@@ -335,11 +402,17 @@ permalink: /videos/
   .video-body{
     padding:22px;
   }
+
+  .video-meta-row{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+  }
 }
 
 @media(max-width:420px){
   .videos-hero h1{
-    font-size:2.05rem;
+    font-size:2rem;
   }
 }
 </style>
