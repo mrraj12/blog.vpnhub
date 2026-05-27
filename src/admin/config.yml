@@ -147,7 +147,7 @@ collections:
         widget: "boolean"
         default: false
         required: false
-        hint: "Turn this ON to show this tutorial on homepage. Only the latest 3 featured tutorials will show first. If fewer than 3 are featured, latest normal posts fill the rest."
+        hint: "Turn this ON to show this tutorial on homepage. If fewer than 3 are featured, latest normal posts fill the rest."
 
       - label: "Difficulty"
         name: "difficulty"
@@ -257,6 +257,59 @@ collections:
         name: "site_content"
         file: "src/_data/siteContent.json"
         fields:
+          - label: "Home Page"
+            name: "homePage"
+            widget: "object"
+            fields:
+              - label: "Badge"
+                name: "badge"
+                widget: "string"
+
+              - label: "Title Before Highlight"
+                name: "titleBefore"
+                widget: "string"
+                hint: "Example: VPN Tutorials,"
+
+              - label: "Title Highlight"
+                name: "titleHighlight"
+                widget: "string"
+                hint: "Example: Made Simple"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+
+              - label: "Hero Buttons / Cards"
+                name: "actions"
+                widget: "list"
+                summary: "{{fields.label}} → {{fields.url}}"
+                min: 0
+                fields:
+                  - label: "Button Text"
+                    name: "label"
+                    widget: "string"
+                    hint: "Example: Purchase Subscription"
+
+                  - label: "Button Link"
+                    name: "url"
+                    widget: "string"
+                    hint: "Example: /tutorials/ or https://vpnhub.uk"
+
+                  - label: "Button Style"
+                    name: "style"
+                    widget: "select"
+                    default: "primary"
+                    options:
+                      - "primary"
+                      - "secondary"
+                      - "glass"
+
+                  - label: "Open in New Tab"
+                    name: "newTab"
+                    widget: "boolean"
+                    default: false
+                    required: false
+
           - label: "Tutorials Page"
             name: "tutorialsPage"
             widget: "object"
@@ -268,12 +321,10 @@ collections:
               - label: "Title Before Highlight"
                 name: "titleBefore"
                 widget: "string"
-                hint: "Example: More VPN Tutorials,"
 
               - label: "Title Highlight"
                 name: "titleHighlight"
                 widget: "string"
-                hint: "Example: Step by Step"
 
               - label: "Description"
                 name: "description"
