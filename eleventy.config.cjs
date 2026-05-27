@@ -23,6 +23,14 @@ module.exports = function(eleventyConfig) {
     });
   }
 
+  function isFeatured(post) {
+    return (
+      post.data.featured === true ||
+      post.data.featured === "true" ||
+      post.data.featured === "True"
+    );
+  }
+
   function isPostFile(item) {
     if (!item || !item.inputPath) return false;
 
@@ -34,11 +42,14 @@ module.exports = function(eleventyConfig) {
     );
   }
 
-  function isFeatured(post) {
+  function isVideoFile(item) {
+    if (!item || !item.inputPath) return false;
+
+    const normalizedPath = item.inputPath.replace(/\\/g, "/");
+
     return (
-      post.data.featured === true ||
-      post.data.featured === "true" ||
-      post.data.featured === "True"
+      normalizedPath.includes("/videos/") &&
+      normalizedPath.endsWith(".md")
     );
   }
 
@@ -105,6 +116,18 @@ module.exports = function(eleventyConfig) {
     return allPosts.filter(function(post) {
       return !homepageInputPaths.includes(post.inputPath);
     });
+  });
+
+  eleventyConfig.addCollection("allVideos", function(collectionApi) {
+    const videos = collectionApi
+      .getAll()
+      .filter(isVideoFile);
+
+    const sortedVideos = sortNewestFirst(videos);
+
+    console.log("VPNHUB videos found:", sortedVideos.length);
+
+    return sortedVideos;
   });
 
   return {
