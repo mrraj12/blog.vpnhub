@@ -11,17 +11,16 @@ permalink: /about/
     <div class="about-hero-inner">
 
       <span class="about-badge">
-        About VPNHUB • Privacy Education • VPN Learning
+        {{ siteContent.aboutPage.badge }}
       </span>
 
       <h1>
-        Learn VPNs,
-        <span>Clearly</span>
+        {{ siteContent.aboutPage.titleBefore }}
+        <span>{{ siteContent.aboutPage.titleHighlight }}</span>
       </h1>
 
       <p>
-        VPNHUB helps users understand VPN setup, online privacy, secure browsing,
-        streaming access, and server management through simple tutorials and guides.
+        {{ siteContent.aboutPage.description }}
       </p>
 
     </div>
@@ -31,62 +30,36 @@ permalink: /about/
     <div class="about-inner">
 
       <article class="about-card main-card">
-        <h2>What is VPNHUB?</h2>
+        <h2>{{ siteContent.aboutPage.mainTitle }}</h2>
 
         <p>
-          VPNHUB is a tutorial-focused platform for people who want to learn VPN setup,
-          privacy protection, secure browsing, and server management without confusion.
+          {{ siteContent.aboutPage.mainParagraphOne }}
         </p>
 
         <p>
-          Our goal is to make VPN learning simple, practical, and useful for beginners,
-          freelancers, remote workers, and privacy-focused users.
+          {{ siteContent.aboutPage.mainParagraphTwo }}
         </p>
       </article>
 
       <div class="about-grid">
 
+        {% for card in siteContent.aboutPage.cards %}
         <article class="about-card">
-          <div class="about-icon">🛡️</div>
-          <h3>Privacy Guides</h3>
+          <div class="about-icon">{{ card.icon }}</div>
+          <h3>{{ card.title }}</h3>
           <p>
-            Learn how VPNs protect your traffic, hide your IP, and reduce privacy risks online.
+            {{ card.text }}
           </p>
         </article>
-
-        <article class="about-card">
-          <div class="about-icon">📱</div>
-          <h3>Device Tutorials</h3>
-          <p>
-            Follow Android, iOS, Windows, router, and browser-based VPN setup tutorials.
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-icon">🌎</div>
-          <h3>Server Knowledge</h3>
-          <p>
-            Understand VPN server locations, speed, routing, streaming, and connection basics.
-          </p>
-        </article>
-
-        <article class="about-card">
-          <div class="about-icon">🎥</div>
-          <h3>Video Lessons</h3>
-          <p>
-            Watch visual VPN walkthroughs and practical step-by-step privacy lessons.
-          </p>
-        </article>
+        {% endfor %}
 
       </div>
 
       <article class="about-card mission-card">
-        <h2>Our Mission</h2>
+        <h2>{{ siteContent.aboutPage.missionTitle }}</h2>
 
         <p>
-          We believe internet privacy should be understandable for everyone. VPNHUB is built
-          to explain VPN tools in a clear way so users can make better decisions, protect their
-          data, and browse more safely.
+          {{ siteContent.aboutPage.missionText }}
         </p>
       </article>
 
@@ -98,11 +71,11 @@ permalink: /about/
 <style>
 .about-page{
   min-height:100vh;
-  color:#ffffff;
+  color:var(--text-main);
   background:
     radial-gradient(circle at 16% 12%, rgba(168,85,247,.26), transparent 28%),
     radial-gradient(circle at 88% 70%, rgba(37,99,235,.24), transparent 34%),
-    linear-gradient(135deg,#111827 0%,#4c1d95 46%,#1e3a8a 100%);
+    linear-gradient(135deg,var(--site-bg) 0%,var(--site-bg-2) 46%,var(--site-bg-3) 100%);
 }
 
 .about-hero{
@@ -122,15 +95,15 @@ permalink: /about/
   padding:10px 24px;
   margin-bottom:34px;
   border-radius:999px;
-  border:1px solid rgba(216,180,254,.26);
+  border:1px solid var(--card-border);
   background:rgba(168,85,247,.16);
-  color:#d8b4fe;
+  color:var(--purple-soft);
   font-size:.95rem;
 }
 
 .about-hero h1{
   margin:0 0 24px;
-  color:#ffffff;
+  color:var(--text-main);
   font-size:4rem;
   line-height:1.08;
   font-weight:950;
@@ -138,13 +111,13 @@ permalink: /about/
 }
 
 .about-hero h1 span{
-  color:#a855f7;
+  color:var(--purple);
 }
 
 .about-hero p{
   max-width:760px;
   margin:0 auto;
-  color:#e5e7eb;
+  color:var(--text-muted);
   font-size:1.22rem;
   line-height:1.75;
 }
@@ -160,16 +133,9 @@ permalink: /about/
 
 .about-card{
   border-radius:22px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(31,41,55,.90),
-      rgba(31,41,55,.76)
-    );
-  border:1px solid rgba(216,180,254,.14);
-  box-shadow:
-    0 24px 70px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.06);
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
 }
@@ -189,7 +155,7 @@ permalink: /about/
 
 .about-card h2{
   margin:0 0 18px;
-  color:#ffffff;
+  color:var(--text-main);
   font-size:2rem;
   line-height:1.2;
   font-weight:950;
@@ -198,7 +164,7 @@ permalink: /about/
 
 .about-card h3{
   margin:0 0 12px;
-  color:#ffffff;
+  color:var(--text-main);
   font-size:1.25rem;
   line-height:1.3;
   font-weight:950;
@@ -206,7 +172,7 @@ permalink: /about/
 
 .about-card p{
   margin:0 0 16px;
-  color:#d1d5db;
+  color:var(--text-muted);
   font-size:1.02rem;
   line-height:1.75;
 }
@@ -228,10 +194,6 @@ permalink: /about/
 
 .about-grid .about-card:hover{
   transform:translateY(-7px);
-  border-color:rgba(216,180,254,.26);
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.36),
-    0 0 30px rgba(168,85,247,.12);
 }
 
 .about-icon{
@@ -239,7 +201,6 @@ permalink: /about/
   font-size:2.1rem;
 }
 
-/* Tablet */
 @media(max-width:1000px){
   .about-grid{
     grid-template-columns:repeat(2,1fr);
@@ -250,7 +211,6 @@ permalink: /about/
   }
 }
 
-/* Mobile */
 @media(max-width:768px){
   .about-hero{
     padding:58px 16px 46px;
