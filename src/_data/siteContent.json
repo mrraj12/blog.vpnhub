@@ -1,0 +1,51 @@
+{
+  "tutorialsPage": {
+    "badge": "More VPN Guides • Setup Help • Troubleshooting",
+    "titleBefore": "More VPN Tutorials,",
+    "titleHighlight": "Step by Step",
+    "description": "Browse all remaining VPNHUB tutorials. Homepage tutorials are hidden here so users can explore the rest of your VPN guides.",
+    "sectionTitle": "All Other Tutorials",
+    "sectionDescription": "These tutorials are not currently shown on the homepage."
+  },
+  "videosPage": {
+    "badge": "VPN Videos • Setup Walkthroughs • Security Lessons",
+    "titleBefore": "VPN Video Guides,",
+    "titleHighlight": "Step by Step",
+    "description": "Watch VPNHUB video tutorials for VPN setup, Hiddify setup, Android VPN, Windows VPN, secure browsing, privacy protection, and server management.",
+    "sectionTitle": "Latest Videos",
+    "sectionDescription": "Watch practical VPN tutorials and setup walkthroughs."
+  },
+  "aboutPage": {
+    "badge": "About VPNHUB • Privacy Education • VPN Learning",
+    "titleBefore": "Learn VPNs,",
+    "titleHighlight": "Clearly",
+    "description": "VPNHUB helps users understand VPN setup, online privacy, secure browsing, streaming access, and server management through simple tutorials and guides.",
+    "mainTitle": "What is VPNHUB?",
+    "mainParagraphOne": "VPNHUB is a tutorial-focused platform for people who want to learn VPN setup, privacy protection, secure browsing, and server management without confusion.",
+    "mainParagraphTwo": "Our goal is to make VPN learning simple, practical, and useful for beginners, freelancers, remote workers, and privacy-focused users.",
+    "missionTitle": "Our Mission",
+    "missionText": "We believe internet privacy should be understandable for everyone. VPNHUB is built to explain VPN tools in a clear way so users can make better decisions, protect their data, and browse more safely.",
+    "cards": [
+      {
+        "icon": "🛡️",
+        "title": "Privacy Guides",
+        "text": "Learn how VPNs protect your traffic, hide your IP, and reduce privacy risks online."
+      },
+      {
+        "icon": "📱",
+        "title": "Device Tutorials",
+        "text": "Follow Android, iOS, Windows, router, and browser-based VPN setup tutorials."
+      },
+      {
+        "icon": "🌎",
+        "title": "Server Knowledge",
+        "text": "Understand VPN server locations, speed, routing, streaming, and connection basics."
+      },
+      {
+        "icon": "🎥",
+        "title": "Video Lessons",
+        "text": "Watch visual VPN walkthroughs and practical step-by-step privacy lessons."
+      }
+    ]
+  }
+}
