@@ -26,7 +26,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{category}}"
-    preview_path: "{{slug}}/"
+    preview_path: "posts/{{slug}}/"
     editor:
       preview: true
 
@@ -147,7 +147,7 @@ collections:
         widget: "boolean"
         default: false
         required: false
-        hint: "Turn this ON to show this tutorial on homepage. Only the latest 3 featured tutorials will show on homepage."
+        hint: "Turn this ON to show this tutorial on homepage. Only the latest 3 featured tutorials will show first. If fewer than 3 are featured, latest normal posts fill the rest."
 
       - label: "Difficulty"
         name: "difficulty"
@@ -251,16 +251,125 @@ collections:
         required: false
 
   - name: "pages"
-    label: "Pages"
+    label: "Page Text Settings"
     files:
-      - label: "About Page"
-        name: "about"
-        file: "src/about.njk"
+      - label: "Website Page Texts"
+        name: "site_content"
+        file: "src/_data/siteContent.json"
         fields:
-          - label: "Title"
-            name: "title"
-            widget: "string"
+          - label: "Tutorials Page"
+            name: "tutorialsPage"
+            widget: "object"
+            fields:
+              - label: "Badge"
+                name: "badge"
+                widget: "string"
 
-          - label: "Description"
-            name: "description"
-            widget: "text"
+              - label: "Title Before Highlight"
+                name: "titleBefore"
+                widget: "string"
+                hint: "Example: More VPN Tutorials,"
+
+              - label: "Title Highlight"
+                name: "titleHighlight"
+                widget: "string"
+                hint: "Example: Step by Step"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+
+              - label: "Section Title"
+                name: "sectionTitle"
+                widget: "string"
+
+              - label: "Section Description"
+                name: "sectionDescription"
+                widget: "text"
+
+          - label: "Videos Page"
+            name: "videosPage"
+            widget: "object"
+            fields:
+              - label: "Badge"
+                name: "badge"
+                widget: "string"
+
+              - label: "Title Before Highlight"
+                name: "titleBefore"
+                widget: "string"
+
+              - label: "Title Highlight"
+                name: "titleHighlight"
+                widget: "string"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+
+              - label: "Section Title"
+                name: "sectionTitle"
+                widget: "string"
+
+              - label: "Section Description"
+                name: "sectionDescription"
+                widget: "text"
+
+          - label: "About Page"
+            name: "aboutPage"
+            widget: "object"
+            fields:
+              - label: "Badge"
+                name: "badge"
+                widget: "string"
+
+              - label: "Title Before Highlight"
+                name: "titleBefore"
+                widget: "string"
+
+              - label: "Title Highlight"
+                name: "titleHighlight"
+                widget: "string"
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+
+              - label: "Main Card Title"
+                name: "mainTitle"
+                widget: "string"
+
+              - label: "Main Paragraph One"
+                name: "mainParagraphOne"
+                widget: "text"
+
+              - label: "Main Paragraph Two"
+                name: "mainParagraphTwo"
+                widget: "text"
+
+              - label: "Mission Title"
+                name: "missionTitle"
+                widget: "string"
+
+              - label: "Mission Text"
+                name: "missionText"
+                widget: "text"
+
+              - label: "About Cards"
+                name: "cards"
+                widget: "list"
+                min: 1
+                max: 4
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "string"
+                    hint: "Emoji icon, example: 🛡️"
+
+                  - label: "Title"
+                    name: "title"
+                    widget: "string"
+
+                  - label: "Text"
+                    name: "text"
+                    widget: "text"
