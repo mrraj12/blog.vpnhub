@@ -10,28 +10,31 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
     <div class="hero-inner">
 
       <span class="hero-badge">
-        VPN Setup • Privacy Guides • Secure Browsing
+        {{ siteContent.homePage.badge }}
       </span>
 
       <h1>
-        VPN Tutorials,
-        <span>Made Simple</span>
+        {{ siteContent.homePage.titleBefore }}
+        <span>{{ siteContent.homePage.titleHighlight }}</span>
       </h1>
 
       <p>
-        Learn how to set up VPN apps, secure your devices, choose the right servers,
-        unlock safe browsing, and follow step-by-step VPN guides from VPNHUB.
+        {{ siteContent.homePage.description }}
       </p>
 
+      {% if siteContent.homePage.actions.length %}
       <div class="hero-actions">
-        <a class="primary-btn" href="/tutorials/">
-          View Tutorials
+        {% for action in siteContent.homePage.actions %}
+        <a
+          class="hero-action-btn {{ action.style or 'primary' }}"
+          href="{{ action.url }}"
+          {% if action.newTab %}target="_blank" rel="noopener"{% endif %}
+        >
+          {{ action.label }}
         </a>
-
-        <a class="secondary-btn" href="/videos/">
-          Watch Videos
-        </a>
+        {% endfor %}
       </div>
+      {% endif %}
 
     </div>
   </section>
@@ -116,7 +119,7 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
 
       <div class="empty-state">
         <h3>No tutorials found</h3>
-        <p>Add posts with <code>tags: posts</code> in the frontmatter.</p>
+        <p>Add posts inside <code>src/posts/</code>.</p>
       </div>
 
       {% endif %}
@@ -133,7 +136,7 @@ description: VPN tutorials, privacy guides, setup tips, and secure browsing less
         Explore VPN setup tutorials, privacy guides, and server tips designed for everyday users.
       </p>
 
-      <a class="primary-btn small-btn" href="/tutorials/">
+      <a class="hero-action-btn primary" href="/tutorials/">
         Explore More Tutorials
       </a>
 
@@ -208,41 +211,55 @@ footer,
   flex-wrap:wrap;
 }
 
-.primary-btn,
-.secondary-btn{
+.hero-action-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:180px;
-  min-height:52px;
-  padding:0 26px;
-  border-radius:12px;
-  color:#ffffff;
+  min-width:170px;
+  min-height:50px;
+  padding:0 24px;
+  border-radius:14px;
   font-size:1rem;
-  font-weight:900;
+  font-weight:950;
   text-decoration:none;
   box-sizing:border-box;
+  transition:.25s ease;
 }
 
-.primary-btn{
+.hero-action-btn:hover{
+  transform:translateY(-3px);
+}
+
+.hero-action-btn.primary{
+  color:#ffffff;
   background:linear-gradient(90deg,#7c3aed,#2563eb);
   box-shadow:0 18px 45px rgba(124,58,237,.32);
 }
 
-.secondary-btn{
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.22);
-}
-
-body.light-mode .secondary-btn{
+.hero-action-btn.secondary{
   color:var(--text-main);
-  background:rgba(255,255,255,.58);
-  border-color:var(--card-border);
+  background:rgba(255,255,255,.44);
+  border:1px solid var(--card-border);
+  box-shadow:0 14px 34px rgba(15,23,42,.08);
 }
 
-.small-btn{
-  min-width:190px;
-  min-height:50px;
+.hero-action-btn.glass{
+  color:var(--text-main);
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+}
+
+body:not(.light-mode) .hero-action-btn.secondary{
+  color:#ffffff;
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,255,255,.22);
+}
+
+body:not(.light-mode) .hero-action-btn.glass{
+  color:#ffffff;
 }
 
 .section{
@@ -512,10 +529,9 @@ body.light-mode .category{
     gap:12px;
   }
 
-  .primary-btn,
-  .secondary-btn{
+  .hero-action-btn{
     width:100%;
-    max-width:300px;
+    max-width:310px;
     min-height:50px;
     font-size:.95rem;
   }
