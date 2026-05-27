@@ -12,12 +12,6 @@
         "newTab": false
       },
       {
-        "label": "Watch Videos",
-        "url": "/videos/",
-        "style": "secondary",
-        "newTab": false
-      },
-      {
         "label": "Purchase Subscription",
         "url": "https://vpnhub.uk",
         "style": "glass",
@@ -42,15 +36,6 @@
     "sectionDescription": "Watch practical VPN tutorials and setup walkthroughs."
   },
   "aboutPage": {
-    "badge": "About VPNHUB • Privacy Education • VPN Learning",
-    "titleBefore": "Learn VPNs,",
-    "titleHighlight": "Clearly",
-    "description": "VPNHUB helps users understand VPN setup, online privacy, secure browsing, streaming access, and server management through simple tutorials and guides.",
-    "mainTitle": "What is VPNHUB?",
-    "mainParagraphOne": "VPNHUB is a tutorial-focused platform for people who want to learn VPN setup, privacy protection, secure browsing, and server management without confusion.",
-    "mainParagraphTwo": "Our goal is to make VPN learning simple, practical, and useful for beginners, freelancers, remote workers, and privacy-focused users.",
-    "missionTitle": "Our Mission",
-    "missionText": "We believe internet privacy should be understandable for everyone. VPNHUB is built to explain VPN tools in a clear way so users can make better decisions, protect their data, and browse more safely.",
     "cards": [
       {
         "icon": "🛡️",
@@ -72,6 +57,15 @@
         "title": "Video Lessons",
         "text": "Watch visual VPN walkthroughs and practical step-by-step privacy lessons."
       }
-    ]
+    ],
+    "badge": "About VPNHUB • Privacy Education • VPN Learning",
+    "missionTitle": "Our Mission",
+    "mainParagraphOne": "VPNHUB is a tutorial-focused platform for people who want to learn VPN setup, privacy protection, secure browsing, and server management without confusion.",
+    "mainParagraphTwo": "Our goal is to make VPN learning simple, practical, and useful for beginners, freelancers, remote workers, and privacy-focused users.",
+    "titleBefore": "Learn VPNs,",
+    "missionText": "We believe internet privacy should be understandable for everyone. VPNHUB is built to explain VPN tools in a clear way so users can make better decisions, protect their data, and browse more safely.",
+    "titleHighlight": "Clearly",
+    "description": "VPNHUB helps users understand VPN setup, online privacy, secure browsing, streaming access, and server management through simple tutorials and guides.",
+    "mainTitle": "What is VPNHUB?"
   }
 }
