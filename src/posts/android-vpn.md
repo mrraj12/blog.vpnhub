@@ -1,14 +1,14 @@
 ---
+layout: post.njk
+tags: posts
 title: How to Set Up VPN on Android Mobile
 description: A beginner-friendly Android VPN setup tutorial.
 date: 2026-05-25
 category: Android VPN
-author: Admin
-readTime: "5"
+author: " VPNHUB Team"
+readTime: 2 min read
 image: /uploads/android-vpn.svg
 featured: true
-layout: post.njk
-tags: posts
 difficulty: Beginner
 platform: Android
 ---
