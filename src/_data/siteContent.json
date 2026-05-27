@@ -1,4 +1,30 @@
 {
+  "homePage": {
+    "badge": "VPN Setup • Privacy Guides • Secure Browsing",
+    "titleBefore": "VPN Tutorials,",
+    "titleHighlight": "Made Simple",
+    "description": "Learn how to set up VPN apps, secure your devices, choose the right servers, unlock safe browsing, and follow step-by-step VPN guides from VPNHUB.",
+    "actions": [
+      {
+        "label": "View Tutorials",
+        "url": "/tutorials/",
+        "style": "primary",
+        "newTab": false
+      },
+      {
+        "label": "Watch Videos",
+        "url": "/videos/",
+        "style": "secondary",
+        "newTab": false
+      },
+      {
+        "label": "Purchase Subscription",
+        "url": "https://vpnhub.uk",
+        "style": "glass",
+        "newTab": true
+      }
+    ]
+  },
   "tutorialsPage": {
     "badge": "More VPN Guides • Setup Help • Troubleshooting",
     "titleBefore": "More VPN Tutorials,",
