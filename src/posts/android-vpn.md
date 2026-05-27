@@ -6,7 +6,7 @@ description: A beginner-friendly Android VPN setup tutorial.
 date: 2026-05-25
 category: Android VPN
 author: " VPNHUB Team"
-readTime: 5 min read
+readTime: 2 min read
 image: /uploads/android-vpn.svg
 featured: true
 difficulty: Beginner
