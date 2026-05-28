@@ -22,7 +22,7 @@ It supports many common proxy and VPN formats, including VLESS, VMess, Trojan, R
 
 In this tutorial, you will learn how to set up a VPN profile in Hiddify step by step.
 
-<iframe class="youtube-video" src="https://www.youtube.com/embed/Ps-ZkVSYkTM" title="Setup" allowfullscreen></iframe>
+
 
 ## What You Need Before Starting
 
